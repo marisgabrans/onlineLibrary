@@ -1,2 +1,2 @@
-# online-library
+# Online Library Spring Boot app
 Online Library team project
