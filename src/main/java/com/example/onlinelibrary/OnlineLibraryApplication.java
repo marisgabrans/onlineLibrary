@@ -9,6 +9,7 @@ public class OnlineLibraryApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineLibraryApplication.class, args);
 		System.out.println("Test string");
+		System.out.println("second test");
 	}
 
 }
