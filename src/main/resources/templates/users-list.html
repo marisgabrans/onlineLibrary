@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <title>Users</title>
@@ -20,10 +21,10 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${user}">
+            <tr th:each="user : ${users}">
                 <td th:text="${user.id}"></td>
-                <td th:text="${user.firstname}"></td>
-                <td th:text="${user.lastname}"></td>
+                <td th:text="${user.firstName}"></td>
+                <td th:text="${user.lastName}"></td>
                 <td th:text="${user.email}"></td>
                 <td th:text="${user.password}"></td>
             </tr>
