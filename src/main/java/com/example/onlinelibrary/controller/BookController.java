@@ -45,7 +45,4 @@ public class BookController {
         bookService.saveBook(book);
         return "redirect:/books";
     }
-
-
-
 }
