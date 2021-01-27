@@ -13,25 +13,19 @@
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Name</th>
-                <th>Surname</th>
+                <th>First name</th>
+                <th>Last name</th>
                 <th>Email</th>
-                <th>Active</th>
-                <th>Activation code</th>
                 <th>Password</th>
-                <th>Role</th>
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user : ${users}">
+            <tr th:each="user : ${user}">
                 <td th:text="${user.id}"></td>
-                <td th:text="${user.name}"></td>
-                <td th:text="${user.surname}"></td>
+                <td th:text="${user.firstname}"></td>
+                <td th:text="${user.lastname}"></td>
                 <td th:text="${user.email}"></td>
-                <td th:text="${user.active}"></td>
-                <td th:text="${user.activationCode}"></td>
                 <td th:text="${user.password}"></td>
-                <td th:text="${user.role}"></td>
             </tr>
             </tbody>
         </table>
