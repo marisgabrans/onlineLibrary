@@ -9,22 +9,23 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 
-@Controller
-public class UserController {
-    private final UserService userService;
+/**
+ * Currently not used. TODO - add @Get and @Post mappings for different actions with users (User administration page)
+ */
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/users")
-    public String findAll(Model model) {
-        List<User> users = userService.findAll();
-        model.addAttribute("users", users);
-        return "/users-list";
-    }
-
-
-
-}
+//@Controller
+//public class UserController {
+//    private final UserService userService;
+//
+//    @Autowired
+//    public UserController(UserService userService) {
+//        this.userService = userService;
+//    }
+//
+//    @GetMapping("/users")
+//    public String findAll(Model model) {
+//        List<User> users = userService.findAll();
+//        model.addAttribute("users", users);
+//        return "/users-list";
+//    }
+//}

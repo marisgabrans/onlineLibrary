@@ -27,10 +27,13 @@ public class BookController {
         return "/books-list";
     }
 
-    @GetMapping("/")
-    public String homePage(Model model) {
-        return "/home";
-    }
+    /**
+     * Commented out because of conflict in MainController class - duplicate mapping path "/"
+     */
+//    @GetMapping("/")
+//    public String homePage(Model model) {
+//        return "/home";
+//    }
 
     @GetMapping("/book-create")
     public String createBookForm(Book book) {

@@ -3,34 +3,43 @@ package com.example.onlinelibrary.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import java.util.Collection;
 
 @Entity
-@Table(name = "users")
+@Table(name =  "user", uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @NotBlank(message = "Name cannot be empty")
-    private String name;
-
-    @NotBlank(message = "Surname cannot be empty")
-    private String surname;
-
-    @Email(message = "Email is not correct")
-    @NotBlank(message = "Email cannot be empty")
+    @Column(name = "first_name")
+    private String firstName;
+    @Column(name = "last_name")
+    private String lastName;
     private String email;
-
-    @NotBlank(message = "Password cannot be empty")
     private String password;
 
-    private String role;
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(
+                    name = "user_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(
+                    name = "role_id", referencedColumnName = "id"))
 
-    private boolean active;
+    private Collection<Role> roles;
 
-    @Column(name = "activation_code")
-    private String activationCode;
+    public User(){
+    }
+
+    public User(String firstName, String lastName, String email, String password, Collection <Role> roles) {
+        super();
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
 
     public Long getId() {
         return id;
@@ -40,20 +49,20 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setSurname(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
@@ -72,27 +81,11 @@ public class User {
         this.password = password;
     }
 
-    public String getRole() {
-        return role;
+    public Collection<Role> getRoles() {
+        return roles;
     }
 
-    public void setRole(String role) {
-        this.role = role;
-    }
-
-    public boolean isActive() {
-        return active;
-    }
-
-    public void setActive(boolean active) {
-        this.active = active;
-    }
-
-    public String getActivationCode() {
-        return activationCode;
-    }
-
-    public void setActivationCode(String activationCode) {
-        this.activationCode = activationCode;
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }
