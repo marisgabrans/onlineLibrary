@@ -1,14 +1,20 @@
 package com.example.onlinelibrary.model;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "genre")
 public class Genre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "genre_id")
     Long id;
     String genre_name;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "genre_id")
+    private List<Book> books;
 
     public Long getId() {
         return id;
