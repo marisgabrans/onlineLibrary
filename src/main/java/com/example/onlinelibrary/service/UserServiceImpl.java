@@ -1,6 +1,7 @@
 package com.example.onlinelibrary.service;
 
 import com.example.onlinelibrary.dto.UserRegistrationDto;
+import com.example.onlinelibrary.model.Book;
 import com.example.onlinelibrary.model.Role;
 import com.example.onlinelibrary.model.User;
 import com.example.onlinelibrary.repository.UserRepository;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
@@ -38,6 +40,11 @@ public class UserServiceImpl implements UserService {
                 Arrays.asList(new Role("ROLE_USER")));
         return userRepository.save(user);
     }
+
+    public List<User> findAll( ) {
+        return userRepository.findAll();
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
