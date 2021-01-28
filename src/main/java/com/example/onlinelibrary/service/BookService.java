@@ -32,5 +32,3 @@ import java.util.List;
             bookRepository.deleteById(id);
         }
     }
-
-
