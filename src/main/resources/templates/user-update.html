@@ -36,7 +36,7 @@
 </div>
 <div class="container-md pt-3">
     <div class="form-group">
-        <form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
+        <form action="#" th:action="@{/user-update?user_id={id}(id=${user.id})}" th:object="${user}" method="post">
             <label for="firstName">First name</label>
             <input class="form-control" type="text" th:field="*{firstName}" id="firstName" placeholder="">
             <br>

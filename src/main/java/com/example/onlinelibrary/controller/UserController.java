@@ -60,7 +60,7 @@ public class UserController {
         }
         userService.updateUser(user);
         model.addAttribute("users", userService.findAll());
-        return "/users";
+        return "/users-list";
     }
 
 }
