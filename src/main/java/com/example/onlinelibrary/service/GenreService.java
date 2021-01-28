@@ -1,6 +1,5 @@
 package com.example.onlinelibrary.service;
 
-import com.example.onlinelibrary.model.Book;
 import com.example.onlinelibrary.model.Genre;
 import com.example.onlinelibrary.repository.GenreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
