@@ -30,6 +30,10 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    public List<User> findAll( ) {
+        return userRepository.findAll();
+    }
+
     public User saveUser(User user) {
         User newUser = new User();
         newUser.setFirstName(user.getFirstName());
@@ -40,9 +44,15 @@ public class UserService implements UserDetailsService {
         return userRepository.save(newUser);
     }
 
-    public List<User> findAll( ) {
-        return userRepository.findAll();
+    public User updateUser(User user) {
+        user.setFirstName(user.getFirstName());
+        user.setLastName(user.getLastName());
+        user.setEmail(user.getEmail());
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        return userRepository.save(user);
     }
+
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {

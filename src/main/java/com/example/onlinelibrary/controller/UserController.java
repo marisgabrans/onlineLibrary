@@ -1,14 +1,13 @@
 package com.example.onlinelibrary.controller;
 
+import com.example.onlinelibrary.model.Book;
 import com.example.onlinelibrary.model.User;
 import com.example.onlinelibrary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -46,20 +45,22 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/user-update/{id}")
-    public String showUpdateForm(@PathVariable("id") Long id, Model model) {
-        User user = userService.findUserById(id);
+    @GetMapping("/user-update")
+    public String showUpdateForm(@RequestParam(name = "user_id", required = true) Long user_id, Model model) {
+        User user = userService.findUserById(user_id);
         model.addAttribute("user", user);
         return "/user-update";
     }
 
-    @PostMapping("/user-update/{id}")
-    public String updateUser(@PathVariable("id") Long id, User user, BindingResult result, Model model) {
+    @PostMapping("/user-update")
+    public String updateUser(@RequestParam(name = "user_id", required = true) Long user_id, User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            user.setId(user_id);
             return "/user-update";
         }
-        userService.saveUser(user);
-        return "/user-update";
+        userService.updateUser(user);
+        model.addAttribute("users", userService.findAll());
+        return "/users";
     }
 
 }

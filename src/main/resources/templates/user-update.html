@@ -36,20 +36,19 @@
 </div>
 <div class="container-md pt-3">
     <div class="form-group">
-        <form action="#" th:action="@{/user-update/${user.id}}" th:object="${user}" method="post">
+        <form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
             <label for="firstName">First name</label>
-            <input class="form-control" type="text" th:field="*{user.firstName}" id="firstName" placeholder="">
+            <input class="form-control" type="text" th:field="*{firstName}" id="firstName" placeholder="">
             <br>
             <label for="lastName">Last name</label>
-            <input class="form-control" type="text" th:field="*{user.lastName}" id="lastName" placeholder="">
+            <input class="form-control" type="text" th:field="*{lastName}" id="lastName" placeholder="">
             <br>
             <label for="email">Email</label>
-            <input class="form-control" type="text" th:field="*{user.email}" id="email" placeholder="">
+            <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="">
             <br>
-            <label for="password">Password</label>
-            <input class="form-control" type="text" th:field="*{user.password}" id="password" placeholder="">
+            <label for="password">Password change is mandatory</label>
+            <input class="form-control" type="text" th:field="*{password}" id="password" placeholder="">
             <br>
-
             <input class="btn btn-outline-info btn-block" type="submit" value="Update User">
         </form>
     </div>
