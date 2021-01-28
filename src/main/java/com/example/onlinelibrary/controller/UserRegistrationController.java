@@ -1,6 +1,6 @@
 package com.example.onlinelibrary.controller;
 
-import com.example.onlinelibrary.dto.UserRegistrationDto;
+import com.example.onlinelibrary.model.User;
 import com.example.onlinelibrary.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,8 +20,8 @@ public class UserRegistrationController {
     }
 
     @ModelAttribute("user")
-    public UserRegistrationDto userRegistrationDto() {
-        return new UserRegistrationDto();
+    public User userRegistration() {
+        return new User();
     }
 
     @GetMapping
@@ -30,8 +30,8 @@ public class UserRegistrationController {
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
-        userService.save(registrationDto);
+    public String registerUserAccount(@ModelAttribute("user") User user) {
+        userService.saveUser(user);
         return "redirect:/registration?success";
     }
 
