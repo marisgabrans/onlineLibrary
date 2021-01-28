@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -47,5 +48,13 @@ public class BookController {
     public String createBook(Book book) {
         bookService.saveBook(book);
         return "redirect:/books";
+    }
+
+    @GetMapping("/book-page")
+    public String bookPage(Model model, @RequestParam(name = "book_id", required = true) Long book_id) {
+        List<Book> books = bookService.findAll();
+        Book book = bookService.findById(book_id);
+        model.addAttribute("book", book);
+        return "/book-page";
     }
 }
