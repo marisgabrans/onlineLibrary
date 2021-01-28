@@ -59,11 +59,13 @@
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                             <select class="form-control search-slt" id="exampleFormControlSelect2">
+                                <option th:value = "-1" th:text = "Author"></option>
                                 <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.firstName + ' ' + author.lastName}"></option>
                             </select>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                             <select class="form-control search-slt" id="exampleFormControlSelect1">
+                                <option th:value = "-1" th:text = "Genre"></option>
                                 <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.genre_name}"></option>
                             </select>
                         </div>
