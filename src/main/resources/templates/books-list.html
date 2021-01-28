@@ -58,11 +58,12 @@
                             <input type="text" class="form-control search-slt" placeholder="Name">
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
-                            <input type="text" class="form-control search-slt" placeholder="Author">
+                            <select class="form-control search-slt" id="exampleFormControlSelect2">
+                                <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.firstName + ' ' + author.lastName}"></option>
+                            </select>
                         </div>
                         <div class="col-lg-3 col-md-3 col-sm-12 p-0">
                             <select class="form-control search-slt" id="exampleFormControlSelect1">
-                                <option value="-1">Any genre</option>
                                 <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.genre_name}"></option>
                             </select>
                         </div>
@@ -75,8 +76,6 @@
         </form>
     </div>
 </section>
-
-
 
 <div class="container-xl p-0" th:switch="${books}">
     </br>
@@ -111,8 +110,6 @@
             </table>
         </div>
     </div>
-    <p>blah <strong>blah</strong> blah</p>
-    <button type="button" th:onclick="demo()">Show alert</button>
 </div>
 </body>
 </html>

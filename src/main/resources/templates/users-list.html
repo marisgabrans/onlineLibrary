@@ -34,11 +34,22 @@
         <hr class="my-6">
     </div>
 </div>
+
 <div class="container-xl p-0" th:switch="${users}">
-    </br>
     <div class="container-xl pl-3">
         <p><a href="/user-create" class="btn btn-outline-info">Create user</a></p>
     </div>
+    </br>
+    <div class = "container">
+        <form class="form-inline">
+            <div class="form-group">
+                <label for="name" class="sr-only">Password</label>
+                <input type="password" class="form-control" id="name" placeholder="Name">
+            </div>
+            <button type="submit" class="btn btn-outline-info mb-2">Search</button>
+        </form>
+    </div>
+
     <h2 class="alert alert-warning text-center" th:case="null">No users found!</h2>
     <div th:case="*">
         <div class="container-xl p-3">

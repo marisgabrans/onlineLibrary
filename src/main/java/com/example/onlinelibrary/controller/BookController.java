@@ -1,7 +1,9 @@
 package com.example.onlinelibrary.controller;
 
+import com.example.onlinelibrary.model.Author;
 import com.example.onlinelibrary.model.Book;
 import com.example.onlinelibrary.model.Genre;
+import com.example.onlinelibrary.repository.AuthorRepository;
 import com.example.onlinelibrary.repository.GenreRepository;
 import com.example.onlinelibrary.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,19 +18,23 @@ import java.util.List;
 public class BookController {
     private final BookService bookService;
     private final GenreRepository genreRepository;
+    private final AuthorRepository authorRepository;
 
     @Autowired
-    public BookController(BookService bookService, GenreRepository genreRepository) {
+    public BookController(BookService bookService, GenreRepository genreRepository, AuthorRepository authorRepository) {
         this.bookService = bookService;
         this.genreRepository = genreRepository;
+        this.authorRepository = authorRepository;
     }
 
     @GetMapping("/books")
     public String findAll(Model model) {
         List<Book> books = bookService.findAll();
         List<Genre> genres = genreRepository.findAll();
+        List<Author> authors = authorRepository.findAll();
         model.addAttribute("books", books);
         model.addAttribute("genres", genres);
+        model.addAttribute("authors", authors);
         return "/books-list";
     }
 
