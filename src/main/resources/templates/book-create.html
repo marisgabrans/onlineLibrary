@@ -30,6 +30,7 @@
 <div class="container-fluid pt-3">
     <div class="alert alert-secondary text-center">
         <h3>Create new book</h3>
+        <hr class="my-6">
     </div>
 </div>
 <div class="container-md pt-3">
@@ -48,16 +49,12 @@
             <input class="form-control" type="number" th:field="*{pages}" id="pages" placeholder="Pages">
             <br>
             <label for="description">Description</label>
-            <!--            <input class="form-control" type="text" th:field="*{description}" id="description"-->
-            <!--                   placeholder="Description">-->
             <textarea class="form-control" rows="3" th:field="*{description}" id="description"
                       placeholder="Description"></textarea>
             <br>
-            <!--    <input type="submit" value="Create new Book">-->
             <input class="btn btn-outline-info btn-block" type="submit" value="Create new Book">
         </form>
     </div>
 </div>
-
 </body>
 </html>

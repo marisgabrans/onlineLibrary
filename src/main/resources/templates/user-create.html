@@ -27,23 +27,33 @@
 </nav>
 
 <body>
-<form action="#" th:action="@{/user-create}" th:object="${user}" method="post">
-    <label for="firstName">First name</label>
-    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First name">
-    <br>
-    <label for="lastName">Last name</label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
-    <br>
-    <label for="email">Email</label>
-    <input type="text" th:field="*{email}" id="email" placeholder="Email">
-    <br>
-    <br>
-    <label for="password">Password</label>
-    <input type="text" th:field="*{password}" id="password" placeholder="Password">
-    <br>
-    <br>
+<div class="container-fluid pt-3">
+    <div class="alert alert-secondary text-center">
+        <h3>Create new book</h3>
+        <hr class="my-6">
+    </div>
+</div>
+<div class="container-md pt-3">
+    <div class="form-group">
+        <form action="#" th:action="@{/user-create}" th:object="${user}" method="post">
+            <label for="firstName">First name</label>
+            <input class="form-control" type="text" th:field="*{firstName}" id="firstName" placeholder="First name">
+            <br>
+            <label for="lastName">Last name</label>
+            <input class="form-control" type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
+            <br>
+            <label for="email">Email</label>
+            <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="Email">
+            <br>
+            <br>
+            <label for="password">Password</label>
+            <input class="form-control" type="text" th:field="*{password}" id="password" placeholder="Password">
+            <br>
+            <br>
 
-    <input type="submit" value="Create new User">
-</form>
+            <input class="btn btn-outline-info btn-block" type="submit" value="Create new User">
+        </form>
+    </div>
+</div>
 </body>
 </html>

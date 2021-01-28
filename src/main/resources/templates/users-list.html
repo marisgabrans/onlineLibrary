@@ -27,65 +27,42 @@
 </nav>
 
 <body>
+<div class="container-fluid pt-3">
+    <div class="alert alert-secondary text-center">
+        <h1>Users</h1>
+        <hr class="my-6">
+    </div>
+</div>
 <div class="container-xl p-0" th:switch="${users}">
-    <h2 class="alert alert-warning text-center" th:case="null">No books found!</h2>
+    </br>
+    <div class="container-xl pl-3">
+        <p><a href="/user-create" class="btn btn-outline-info">Create user</a></p>
+    </div>
+    <h2 class="alert alert-warning text-center" th:case="null">No users found!</h2>
     <div th:case="*">
         <div class="container-xl p-3">
             <table class="table table-hover">
                 <thead class="thead-dark">
                 <tr>
                     <th>Id</th>
-                    <th>Title</th>
-                    <th>Author</th>
-                    <th>Genre</th>
-                    <th>Pages</th>
-                    <th>Description</th>
+                    <th>First name</th>
+                    <th>Last name</th>
+                    <th>Email</th>
+                    <th>Password</th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="book : ${users}">
-                    <td th:text="${users.id}"></td>
-                    <td th:text="${users.title}"></td>
-                    <td th:text="${users.author.firstName + ' ' + book.author.lastName}"></td>
-                    <td th:text="${users.genre.genre_name}"></td>
-                    <td th:text="${users.pages}"></td>
-                    <td th:text="${users.description}"></td>
+                <tr th:each="user : ${users}">
+                    <td th:text="${user.id}"></td>
+                    <td th:text="${user.firstName}"></td>
+                    <td th:text="${user.lastName}"></td>
+                    <td th:text="${user.email}"></td>
+                    <td th:text="${user.password}"></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <p>blah <strong>blah</strong> blah</p>
-    <button type="button" th:onclick="demo()">Show alert</button>
-</div>
-
-
-<div th:switch="${users}">
-    <h2 th:case="null">No users found!</h2>
-    <div th:case="*">
-        <h2>Users</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Id</th>
-                <th>First name</th>
-                <th>Last name</th>
-                <th>Email</th>
-                <th>Password</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="user : ${users}">
-                <td th:text="${user.id}"></td>
-                <td th:text="${user.firstName}"></td>
-                <td th:text="${user.lastName}"></td>
-                <td th:text="${user.email}"></td>
-                <td th:text="${user.password}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <p><a href="/user-create">Create user</a></p>
 </div>
 </body>
 </html>
