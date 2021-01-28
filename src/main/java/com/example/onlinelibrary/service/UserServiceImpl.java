@@ -64,5 +64,9 @@ public class UserServiceImpl implements UserService {
                 .collect(Collectors.toList());
     }
 
+    public User findUserById(Long id) {
+        User user = userRepository.findUserById(id);
+        return user;
+    }
 
 }
