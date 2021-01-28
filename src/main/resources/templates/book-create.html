@@ -36,14 +36,17 @@
 
 <body>
 <div class="container-fluid pt-3 text-center" style="background: rgba(233, 236, 239, 0.85)">
+    <div class="alert alert-secondary text-center">
     <h3>Create new book</h3>
     <hr class="my-6">
+</div>
 </div>
 <div class="container-md pt-3">
     <div class="form-group">
         <form action="#" th:action="@{/book-create}" th:object="${book}" method="post">
             <label for="title">Title</label>
             <input class="form-control" type="text" th:field="*{title}" id="title" placeholder="Title">
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
             <br>
             <label for="author">Author</label>
             <select class="form-control search-slt" th:field="*{author}" id="author">
@@ -61,8 +64,10 @@
             <label for="description">Description</label>
             <textarea class="form-control" rows="3" th:field="*{description}" id="description"
                       placeholder="Description"></textarea>
+            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
             <br>
             <input class="btn btn-outline-info btn-block" type="submit" value="Create new Book">
+
         </form>
     </div>
 </div>

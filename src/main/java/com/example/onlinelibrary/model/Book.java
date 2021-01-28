@@ -1,6 +1,7 @@
 package com.example.onlinelibrary.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.sql.Blob;
 
 @Entity
@@ -10,6 +11,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
     private Long id;
+    @NotBlank(message = "Title is mandatory")
     private String title;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -22,6 +24,7 @@ public class Book {
 
     @Column(name = "pages_qty")
     private int pages;
+    @NotBlank(message = "Description can not be blank")
     private String description;
     private Integer quantity;
     @Column(name = "bookcover")
