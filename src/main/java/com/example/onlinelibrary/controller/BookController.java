@@ -68,22 +68,21 @@ public class BookController {
         return "/book-page";
     }
 
-    @GetMapping("update/{id}")
-    public String showUpdateForm(@PathVariable("id") long id, Model model) {
+    @GetMapping("/book-update")
+    public String showUpdateForm(@RequestParam(name = "book_id", required = true)  long id, Model model) {
         Book book = bookService.findById(id);
         model.addAttribute("book", book);
-        return "book-update";
+        return "/book-update";
     }
 
-    @PostMapping("update/{id}")
-    public String updateBook(@PathVariable("id") long id, @Valid Book book, BindingResult result,
-                                Model model) {
+    @PostMapping("/book-update")
+    public String updateBook(@RequestParam(name = "book_id", required = true) Long id, Book book, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "book-update";
+            return "/book-update";
         }
 
-        bookService.saveBook(book);
-        model.addAttribute("students", bookService.findAll());
-        return "index";
+        bookService.updateBook(book, id);
+        model.addAttribute("books", bookService.findAll());
+        return "/books-list";
     }
 }

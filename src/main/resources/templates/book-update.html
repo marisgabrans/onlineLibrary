@@ -28,7 +28,8 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 </nav>
 
 <body>
-<form action="#" th:action="@{/book-update}" th:object="${book}" method="post">
+<form action="#" th:action="@{/book-update?book_id={id}(id=${book.id})}" th:object="${book}" method="post">
+
     <label for="id">Id</label>
     <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
     <br/>
