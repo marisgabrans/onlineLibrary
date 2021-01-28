@@ -9,7 +9,7 @@ public class Book {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "book_id")
-    private Integer id;
+    private Long id;
     private String title;
 
     @OneToOne(cascade = CascadeType.ALL)
@@ -27,11 +27,11 @@ public class Book {
     @Column(name = "bookcover")
     private Blob cover;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
