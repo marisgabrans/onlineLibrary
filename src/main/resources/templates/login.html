@@ -7,6 +7,12 @@
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
           crossorigin="anonymous">
+    <style>
+        body {
+            background-image: url("https://images.unsplash.com/photo-1485322551133-3a4c27a9d925?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");
+            background-size: cover;
+        }
+    </style>
 </head>
 
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
@@ -21,9 +27,9 @@
 
 <br>
 <br>
-<div class = "container">
-    <div class = "row">
-        <div class = "col-md-6 col-md-offset-3">
+<div class="container-fluid" style="background: rgba(233, 236, 239, 0.85)">
+    <div class="row" align="center">
+        <div class="col-md-6 col-md-offset-3">
 
             <h1>User Login Page</h1>
             <p>For registered users only! Please login or register!</p>
@@ -32,7 +38,8 @@
                 <!-- error message -->
                 <div th:if="${param.error}">
                     <div class="alert alert-danger">Invalid username or
-                        password.</div>
+                        password.
+                    </div>
                 </div>
 
                 <!-- logout message -->
@@ -40,23 +47,23 @@
                     <div class="alert alert-info">You have been logged out.</div>
                 </div>
 
-                <div class = "form-group">
-                    <label for ="username"> Username: </label>
-                    <input type="text" class = "form-control" id ="username" name = "username"
+                <div class="form-group">
+                    <label for="username"> Username: </label>
+                    <input type="text" class="form-control" id="username" name="username"
                            placeholder="Enter Email ID" autofocus="autofocus">
                 </div>
 
                 <div class="form-group">
                     <label for="password">Password:</label>
                     <input type="password" id="password" name="password" class="form-control"
-                           placeholder="Enter Password" />
+                           placeholder="Enter Password"/>
                 </div>
 
                 <div class="form-group">
                     <div class="row">
                         <div class="col-sm-6 col-sm-offset-3">
                             <input type="submit" name="login-submit" id="login-submit"
-                                   class="form-control btn btn-primary" value="Log In" />
+                                   class="form-control btn btn-primary" value="Log In"/>
                         </div>
                     </div>
                 </div>
