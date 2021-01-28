@@ -41,8 +41,8 @@ public class BookController {
 
     @GetMapping("/book-create")
     public String createBookForm(Model model) {
-        List<Genre> genres = genreRepository.findAll();
-        List<Author> authors = authorRepository.findAll();
+        List<Genre> genres = genreService.findAll();
+        List<Author> authors = authorService.findAll();
         model.addAttribute("genres", genres);
         model.addAttribute("authors", authors);
         model.addAttribute("book", new Book());
