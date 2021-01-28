@@ -58,7 +58,7 @@ public class UserController {
             user.setId(user_id);
             return "/user-update";
         }
-        userService.updateUser(user);
+        userService.updateUser(user, user_id);
         model.addAttribute("users", userService.findAll());
         return "/users-list";
     }

@@ -12,11 +12,15 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotBlank(message = "mandatory")
     @Column(name = "first_name")
     private String firstName;
+    @NotBlank(message = "mandatory")
     @Column(name = "last_name")
     private String lastName;
+    @NotBlank(message = "mandatory")
     private String email;
+    @NotBlank(message = "mandatory")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

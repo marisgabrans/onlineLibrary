@@ -44,11 +44,12 @@ public class UserService implements UserDetailsService {
         return userRepository.save(newUser);
     }
 
-    public User updateUser(User user) {
-        user.setFirstName(user.getFirstName());
-        user.setLastName(user.getLastName());
-        user.setEmail(user.getEmail());
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+    public User updateUser(User userDetails, Long id) {
+        User user = userRepository.findUserById(id);
+        user.setFirstName(userDetails.getFirstName());
+        user.setLastName(userDetails.getLastName());
+        user.setEmail(userDetails.getEmail());
+        user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         return userRepository.save(user);
     }
 
