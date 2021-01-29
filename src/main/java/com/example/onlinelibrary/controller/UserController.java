@@ -57,7 +57,7 @@ public class UserController {
     }
 
     @PostMapping("/user-update")
-    public String updateUser(@RequestParam(name = "user_id", required = true) Long user_id, User user, BindingResult result, Model model) {
+    public String updateUser(@RequestParam (name = "user_id", required = true) Long user_id, @ModelAttribute @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             user.setId(user_id);
             return "/user-update";
