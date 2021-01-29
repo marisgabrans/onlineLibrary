@@ -56,6 +56,10 @@ public class BookController {
     @PostMapping("/book-create")
     public String createBook(@ModelAttribute @Valid Book book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
+            List<Genre> genres = genreService.findAll();
+            List<Author> authors = authorService.findAll();
+            model.addAttribute("genres", genres);
+            model.addAttribute("authors", authors);
             return "/book-create";
         }
 
@@ -86,6 +90,10 @@ public class BookController {
     @PostMapping("/book-update")
     public String updateBook(@RequestParam(name = "book_id", required = true) Long id, @ModelAttribute @Valid Book book, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            List<Genre> genres = genreService.findAll();
+            List<Author> authors = authorService.findAll();
+            model.addAttribute("genres", genres);
+            model.addAttribute("authors", authors);
             return "/book-update";
         }
 
