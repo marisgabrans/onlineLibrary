@@ -18,6 +18,7 @@
     </style>
 </head>
 
+<body>
 <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
     <ul class="navbar-nav">
         <li class="nav-item">
@@ -34,12 +35,11 @@
         </li>
     </ul>
 </nav>
-
-<body>
-<div class="container-fluid pt-3 text-center container-bg">
+<div class="container-fluid pt-3 pb-1 text-center container-bg">
     <h2>Create new book</h2>
-    <hr class="my-6">
+    <hr class="style-one">
 </div>
+</br>
 </div>
 <div class="container-md pt-3">
     <div class="form-group">
@@ -60,6 +60,11 @@
             <br>
             <label for="pages">Pages</label>
             <input class="form-control" type="number" th:field="*{pages}" id="pages" placeholder="Pages">
+            <span th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}" class="text-danger"></span>
+            <br>
+            <label for="quantity">Quantity</label>
+            <input class="form-control" type="number" th:field="*{quantity}" id="quantity" placeholder="Quantity">
+            <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="text-danger"></span>
             <br>
             <label for="description">Description</label>
             <textarea class="form-control" rows="3" th:field="*{description}" id="description"

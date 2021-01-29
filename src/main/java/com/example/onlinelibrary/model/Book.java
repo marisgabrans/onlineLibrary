@@ -1,8 +1,8 @@
 package com.example.onlinelibrary.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import java.sql.Blob;
 
 @Entity
 @Table(name = "books")
@@ -14,19 +14,21 @@ public class Book {
     @NotBlank(message = "Title is mandatory")
     private String title;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
     @Column(name = "pages_qty")
+    @Min(value = 1, message = "Amount of pages need to be at least 1")
     private int pages;
     @NotBlank(message = "Description can not be blank")
     private String description;
-    private Integer quantity;
+    @Min(value = 1, message = "Quantity of books needs to be at least 1")
+    private int quantity;
     @Column(name = "bookcover")
     private byte[] cover;
 

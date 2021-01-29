@@ -12,7 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
+import java.io.IOException;
 import java.util.List;
 
 @Controller
@@ -51,7 +55,11 @@ public class BookController {
 
     @PostMapping("/book-create")
     public String createBook(@ModelAttribute @Valid Book book, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
+            List<Genre> genres = genreService.findAll();
+            List<Author> authors = authorService.findAll();
+            model.addAttribute("genres", genres);
+            model.addAttribute("authors", authors);
             return "/book-create";
         }
 
@@ -69,7 +77,7 @@ public class BookController {
     }
 
     @GetMapping("/book-update")
-    public String showUpdateForm(@RequestParam(name = "book_id", required = true)  long id, Model model) {
+    public String showUpdateForm(@RequestParam(name = "book_id", required = true) long id, Model model) {
         List<Genre> genres = genreService.findAll();
         List<Author> authors = authorService.findAll();
         Book book = bookService.findById(id);
@@ -80,14 +88,18 @@ public class BookController {
     }
 
     @PostMapping("/book-update")
-    public String updateBook(@RequestParam(name = "book_id", required = true) Long id, Book book, BindingResult result, Model model) {
+    public String updateBook(@RequestParam(name = "book_id", required = true) Long id, @ModelAttribute @Valid Book book, BindingResult result, Model model) {
         if (result.hasErrors()) {
+            List<Genre> genres = genreService.findAll();
+            List<Author> authors = authorService.findAll();
+            model.addAttribute("genres", genres);
+            model.addAttribute("authors", authors);
             return "/book-update";
         }
 
         bookService.updateBook(book, id);
         model.addAttribute("books", bookService.findAll());
-        return "redirect:/books";
+        return "redirect:/book-page?book_id=" + id;
     }
 
     @GetMapping("/book-delete")
@@ -102,10 +114,20 @@ public class BookController {
         List<Book> books = bookService.findAll();
         Book book = bookService.findById(book_id);
         boolean check = bookService.reservation(book);
-            if (check) {
-                return "/success-reservation";
-            } else {
-                return "/error-reservation";
-            }
+        if (check) {
+            return "/success-reservation";
+        } else {
+            return "/error-reservation";
+        }
+    }
+
+    @RequestMapping(value = "/imageDisplay", method = RequestMethod.GET)
+    public void showImage(@RequestParam("id") Long id, HttpServletResponse response, HttpServletRequest request)
+            throws ServletException, IOException {
+        List<Book> books = bookService.findAll();
+        Book book = bookService.findById(id);
+        response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
+        response.getOutputStream().write(book.getCover());
+        response.getOutputStream().close();
     }
 }

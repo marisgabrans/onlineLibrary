@@ -12,7 +12,7 @@ public class Genre {
     Long id;
     String genre_name;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "genre_id")
     private List<Book> books;
 

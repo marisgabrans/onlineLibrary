@@ -37,10 +37,11 @@
 <body>
 <div class="container-fluid pt-3 text-center container-bg">
     <h2>Create new user</h2>
-    <hr class="my-6">
+    <hr class="style-one">
 </div>
+</br>
 </div>
-<div class="container-md pt-3 pb-3 container-bg">
+<div class="container-md pt-3 pb-1 pb-3 container-bg">
     <div class="form-group">
         <form action="#" th:action="@{/user-create}" th:object="${user}" method="post">
             <label for="firstName">First name</label>
@@ -54,7 +55,6 @@
             <label for="email" class = 'form-label'>Email</label>
             <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="Email">
             <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
-            <br>
             <br>
             <label for="password">Password</label>
             <input class="form-control" type="text" th:field="*{password}" id="password" placeholder="Password">
