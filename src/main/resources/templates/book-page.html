@@ -91,7 +91,7 @@
 <br>
 <!--<a th:href="@{/book-delete?book_id={id}(id=${book.id})}">Delete book</a>-->
 <div class="container-xl pl-3">
-    <p><a class="btn btn-danger" href="@{/book-delete?book_id={id}(id=${book.id})}">Delete book</a></p>
+    <p><a class="btn btn-danger" th:href="@{/book-delete?book_id={id}(id=${book.id})}">Delete book</a></p>
 </div>
 
 </body>
