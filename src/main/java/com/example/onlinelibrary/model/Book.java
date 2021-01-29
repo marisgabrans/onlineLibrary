@@ -24,11 +24,11 @@ public class Book {
 
     @Column(name = "pages_qty")
     @Min(value = 1, message = "Amount of pages need to be at least 1")
-    private Integer pages;
+    private int pages;
     @NotBlank(message = "Description can not be blank")
     private String description;
     @Min(value = 1, message = "Quantity of books needs to be at least 1")
-    private Integer quantity;
+    private int quantity;
     @Column(name = "bookcover")
     private byte[] cover;
 
