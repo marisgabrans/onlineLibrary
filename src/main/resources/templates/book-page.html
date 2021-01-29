@@ -63,7 +63,7 @@
 
             </tr>
             <tr>
-                <td> <img src="${book.cover}" border=3 height=250 width=150 alt="Book cover" ></td>
+                <td>  <img class="image" th:src="@{'/imageDisplay?id='+${book.id}}" border=3 height=250 width=150 alt="Book cover"></td>
                 <td th:text="${book.id}"></td>
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author.firstName + ' ' + book.author.lastName}"></td>
