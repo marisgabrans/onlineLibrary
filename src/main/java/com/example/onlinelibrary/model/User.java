@@ -3,6 +3,8 @@ package com.example.onlinelibrary.model;
 import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Collection;
 
 @Entity
@@ -12,15 +14,16 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotBlank(message = "mandatory")
     @Column(name = "first_name")
+    @NotBlank(message = "First name is mandatory")
     private String firstName;
-    @NotBlank(message = "mandatory")
     @Column(name = "last_name")
+    @NotBlank(message = "Last name is mandatory")
     private String lastName;
-    @NotBlank(message = "mandatory")
+    @Email(message = "Invalid email address format")
+    @NotEmpty(message = "Email address is mandatory")
     private String email;
-    @NotBlank(message = "mandatory")
+    @Size(min = 6, message = "Password must contain at least 6 characters")
     private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
