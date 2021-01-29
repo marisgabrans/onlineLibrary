@@ -1,3 +1,14 @@
 .container-bg{
     background-color: rgba(233, 236, 239, 0.9);
 }
+hr.style-one {
+    border: 0;
+    height: 1px;
+    background: #333;
+    background-image: linear-gradient(to right, #ccc, #333, #ccc);
+}
+/*.wrapper-table{*/
+/*    max-width: 1200px;*/
+/*    padding-right: 10px;*/
+/*    padding-left: 10px;*/
+/*}*/

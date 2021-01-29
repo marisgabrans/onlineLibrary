@@ -35,21 +35,21 @@
 </nav>
 
 <body>
-<div class="container-fluid pt-3 text-center container-bg">
+<div class="container-fluid pt-3 pb-1 text-center container-bg">
     <h2>Users</h2>
-    <hr class="my-6">
+    <hr class="style-one">
 </div>
-
+</br>
 <div class="container-xl p-0 container-bg" th:switch="${users}">
     </br>
     <div class="container-xl pl-3">
         <p><a href="/user-create" class="btn btn-outline-info">Create user</a></p>
     </div>
-    <div class = "container">
+    <div class = "container-fluid">
         <form class="form-inline">
             <div class="form-group">
                 <label for="name" class="sr-only">Password</label>
-                <input type="password" class="form-control" id="name" placeholder="Name">
+                <input type="text" class="form-control" id="name" placeholder="Name">
             </div>
             <button type="submit" class="btn btn-outline-info mb-2">Search</button>
         </form>
