@@ -58,17 +58,20 @@
                 <th>Genre</th>
                 <th>Pages</th>
                 <th>Description</th>
+                <th>Available number of books</th>
+                <th>Reserve</th>
 
             </tr>
             <tr>
-                <td><img src="" alt="" border=3 height=250 width=150></img></td>
+                <td> <img src="${book.cover}" border=3 height=250 width=150 alt="Book cover" ></td>
                 <td th:text="${book.id}"></td>
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author.firstName + ' ' + book.author.lastName}"></td>
                 <td th:text="${book.genre.genre_name}"></td>
                 <td th:text="${book.pages}"></td>
                 <td th:text="${book.description}"></td>
-
+                <td th:text="${book.quantity}"></td>
+                <td><a th:href="@{/book-reservation?book_id={id}(id=${book.id})}">Make reservation</a></td>
             </tr>
         </table>
 <br>

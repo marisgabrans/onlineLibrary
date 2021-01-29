@@ -96,4 +96,16 @@ public class BookController {
         model.addAttribute("books", bookService.findAll());
         return "/books-list";
     }
+
+    @GetMapping("/book-reservation")
+    public String bookReservation(Model model, @RequestParam(name = "book_id", required = true) Long book_id) {
+        List<Book> books = bookService.findAll();
+        Book book = bookService.findById(book_id);
+        boolean check = bookService.reservation(book);
+            if (check) {
+                return "/success-reservation";
+            } else {
+                return "/error-reservation";
+            }
+    }
 }

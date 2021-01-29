@@ -53,4 +53,16 @@ import java.util.List;
             return bookRepository.save(book);
         }
 
+        public boolean reservation(Book book) {
+            Integer quantity = book.getQuantity();
+            if (quantity <= 0) {
+                return false;
+            } else {
+                quantity = quantity - 1;
+                book.setQuantity(quantity);
+                bookRepository.save(book);
+                return true;
+            }
+        }
+
     }

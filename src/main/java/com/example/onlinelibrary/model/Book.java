@@ -28,7 +28,7 @@ public class Book {
     private String description;
     private Integer quantity;
     @Column(name = "bookcover")
-    private Blob cover;
+    private byte[] cover;
 
     public Long getId() {
         return id;
@@ -86,11 +86,11 @@ public class Book {
         this.quantity = quantity;
     }
 
-    public Blob getCover() {
+    public byte[] getCover() {
         return cover;
     }
 
-    public void setCover(Blob cover) {
+    public void setCover(byte[] cover) {
         this.cover = cover;
     }
 }
