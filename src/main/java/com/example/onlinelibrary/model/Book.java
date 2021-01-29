@@ -14,11 +14,11 @@ public class Book {
     @NotBlank(message = "Title is mandatory")
     private String title;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "author_id")
     private Author author;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "genre_id")
     private Genre genre;
 
