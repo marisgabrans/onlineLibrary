@@ -71,7 +71,10 @@
 
             </tr>
         </table>
-
+<br>
+<a th:href="@{/book-update?book_id={id}(id=${book.id})}">Edit book</a>
+<br>
+<a th:href="@{/book-delete?book_id={id}(id=${book.id})}">Delete book</a>
 
 </body>
 </html>
