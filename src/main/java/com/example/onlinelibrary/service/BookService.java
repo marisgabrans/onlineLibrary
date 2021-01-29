@@ -6,6 +6,8 @@ import com.example.onlinelibrary.model.Genre;
 import com.example.onlinelibrary.model.User;
 import com.example.onlinelibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.CascadeType;
@@ -18,6 +20,9 @@ import java.util.List;
     @Service
     public class BookService {
         private final BookRepository bookRepository;
+
+        @Autowired
+        private JavaMailSender emailSender;
 
         @Autowired
         public BookService(BookRepository bookRepository) {
@@ -61,8 +66,22 @@ import java.util.List;
                 quantity = quantity - 1;
                 book.setQuantity(quantity);
                 bookRepository.save(book);
+                sendSimpleMessage("eriks.cuhrukidze@gmail.com", "test", "test");
                 return true;
             }
+        }
+
+
+
+        private void sendSimpleMessage(
+                String to, String subject, String text) {
+
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setFrom("worms.boook@gmail.com");
+            message.setTo(to);
+            message.setSubject(subject);
+            message.setText(text);
+            emailSender.send(message);
         }
 
     }

@@ -77,7 +77,7 @@
             <td>
 <!--                <a th:href="@{/book-reservation?book_id={id}(id=${book.id})}">Make reservation</a>-->
                 <div class="container-xl pl-3">
-                    <p><a class="btn btn-outline-info" href="@{/book-reservation?book_id={id}(id=${book.id})}">Make reservation</a></p>
+                    <p><a class="btn btn-outline-info" th:href="@{/book-reservation?book_id={id}(id=${book.id})}">Make reservation</a></p>
                 </div>
             </td>
         </tr>
