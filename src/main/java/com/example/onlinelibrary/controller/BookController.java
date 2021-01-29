@@ -85,4 +85,11 @@ public class BookController {
         model.addAttribute("books", bookService.findAll());
         return "/books-list";
     }
+
+    @GetMapping("/book-delete")
+    public String deleteUser(@RequestParam(name = "book_id", required = true) long id, Model model) {
+        bookService.deleteById(id);
+        model.addAttribute("books", bookService.findAll());
+        return "/books-list";
+    }
 }
