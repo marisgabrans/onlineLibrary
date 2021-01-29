@@ -70,8 +70,12 @@ public class BookController {
 
     @GetMapping("/book-update")
     public String showUpdateForm(@RequestParam(name = "book_id", required = true)  long id, Model model) {
+        List<Genre> genres = genreService.findAll();
+        List<Author> authors = authorService.findAll();
         Book book = bookService.findById(id);
         model.addAttribute("book", book);
+        model.addAttribute("genres", genres);
+        model.addAttribute("authors", authors);
         return "/book-update";
     }
 
