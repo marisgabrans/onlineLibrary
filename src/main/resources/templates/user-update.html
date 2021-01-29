@@ -43,16 +43,20 @@
     <div class="form-group">
         <form action="#" th:action="@{/user-update?user_id={id}(id=${user.id})}" th:object="${user}" method="post">
             <label for="firstName">First name</label>
-            <input class="form-control" type="text" th:field="*{firstName}" id="firstName" placeholder="">
+            <input class="form-control" type="text" th:field="*{firstName}" id="firstName" placeholder="First name">
+            <span th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="text-danger"></span>
             <br>
             <label for="lastName">Last name</label>
-            <input class="form-control" type="text" th:field="*{lastName}" id="lastName" placeholder="">
+            <input class="form-control" type="text" th:field="*{lastName}" id="lastName" placeholder="Last name">
+            <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
             <br>
-            <label for="email">Email</label>
-            <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="">
+            <label for="email" class = 'form-label'>Email</label>
+            <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="Email">
+            <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
             <br>
             <label for="password">Password change is mandatory</label>
-            <input class="form-control" type="text" th:field="*{password}" id="password" placeholder="">
+            <input class="form-control" type="text" th:field="*{password}" id="password" placeholder="Password">
+            <span th:if="${#fields.hasErrors('password')}" th:errors="*{password}" class="text-danger"></span>
             <br>
             <input class="btn btn-outline-info btn-block" type="submit" value="Update User">
         </form>
