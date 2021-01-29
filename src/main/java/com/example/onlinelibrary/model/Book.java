@@ -27,7 +27,7 @@ public class Book {
     private int pages;
     @NotBlank(message = "Description can not be blank")
     private String description;
-    private Integer quantity;
+    private int quantity;
     @Column(name = "bookcover")
     private byte[] cover;
 
