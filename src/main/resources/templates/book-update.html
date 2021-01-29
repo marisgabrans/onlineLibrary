@@ -49,6 +49,7 @@
             <br/>
             <label for="title">Title</label>
             <input class="form-control" type="text" th:field="*{title}" id="title" placeholder="Title">
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
             <br/>
             <label for="author">Author</label>
             <!--            <input type="text" th:field="*{author}" id="author" placeholder="Author">-->
@@ -65,10 +66,12 @@
             <br/>
             <label for="pages">Pages</label>
             <input class="form-control" type="number" th:field="*{pages}" id="pages" placeholder="Pages">
+            <span th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}" class="text-danger"></span>
             <br/>
             <label for="description">Description</label>
             <textarea class="form-control" rows="3" th:field="*{description}" id="description"
                       placeholder="Description"></textarea>
+            <span th:if="${#fields.hasErrors('description')}" th:errors="*{description}" class="text-danger"></span>
             </br>
             <input class="btn btn-outline-info btn-block" type="submit" value="Update Book">
         </form>

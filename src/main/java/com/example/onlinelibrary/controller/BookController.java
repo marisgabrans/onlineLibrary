@@ -80,7 +80,7 @@ public class BookController {
     }
 
     @PostMapping("/book-update")
-    public String updateBook(@RequestParam(name = "book_id", required = true) Long id, Book book, BindingResult result, Model model) {
+    public String updateBook(@RequestParam(name = "book_id", required = true) Long id, @ModelAttribute @Valid Book book, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "/book-update";
         }

@@ -1,8 +1,8 @@
 package com.example.onlinelibrary.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotBlank;
-import java.sql.Blob;
 
 @Entity
 @Table(name = "books")
@@ -23,6 +23,7 @@ public class Book {
     private Genre genre;
 
     @Column(name = "pages_qty")
+    @Min(value = 1, message = "Amount of pages need to be at least 1")
     private int pages;
     @NotBlank(message = "Description can not be blank")
     private String description;
