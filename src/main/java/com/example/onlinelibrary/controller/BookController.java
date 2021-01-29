@@ -55,7 +55,7 @@ public class BookController {
 
     @PostMapping("/book-create")
     public String createBook(@ModelAttribute @Valid Book book, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()){
+        if (bindingResult.hasErrors()) {
             return "/book-create";
         }
 
@@ -73,7 +73,7 @@ public class BookController {
     }
 
     @GetMapping("/book-update")
-    public String showUpdateForm(@RequestParam(name = "book_id", required = true)  long id, Model model) {
+    public String showUpdateForm(@RequestParam(name = "book_id", required = true) long id, Model model) {
         List<Genre> genres = genreService.findAll();
         List<Author> authors = authorService.findAll();
         Book book = bookService.findById(id);
@@ -91,7 +91,7 @@ public class BookController {
 
         bookService.updateBook(book, id);
         model.addAttribute("books", bookService.findAll());
-        return "redirect:/books";
+        return "redirect:/book-page?book_id=" + id;
     }
 
     @GetMapping("/book-delete")
@@ -106,11 +106,11 @@ public class BookController {
         List<Book> books = bookService.findAll();
         Book book = bookService.findById(book_id);
         boolean check = bookService.reservation(book);
-            if (check) {
-                return "/success-reservation";
-            } else {
-                return "/error-reservation";
-            }
+        if (check) {
+            return "/success-reservation";
+        } else {
+            return "/error-reservation";
+        }
     }
 
     @RequestMapping(value = "/imageDisplay", method = RequestMethod.GET)
