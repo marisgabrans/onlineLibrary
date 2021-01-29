@@ -40,8 +40,8 @@ public class UserController {
     }
 
     @PostMapping("/user-create")
-    public String createUser(@ModelAttribute @Valid User user, BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()){
+    public String createUser(@ModelAttribute @Valid User user, BindingResult result, Model model) {
+        if (result.hasErrors()){
             return "/user-create";
         }
         userService.saveUser(user);
