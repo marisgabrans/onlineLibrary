@@ -87,11 +87,11 @@ public class BookController {
 
         bookService.updateBook(book, id);
         model.addAttribute("books", bookService.findAll());
-        return "/books-list";
+        return "redirect:/books";
     }
 
     @GetMapping("/book-delete")
-    public String deleteUser(@RequestParam(name = "book_id", required = true) long id, Model model) {
+    public String deleteBook(@RequestParam(name = "book_id", required = true) long id, Model model) {
         bookService.deleteById(id);
         model.addAttribute("books", bookService.findAll());
         return "/books-list";

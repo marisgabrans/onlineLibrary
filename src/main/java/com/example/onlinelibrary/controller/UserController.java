@@ -66,5 +66,10 @@ public class UserController {
         model.addAttribute("users", userService.findAll());
         return "/users-list";
     }
-
+    @GetMapping("/user-delete")
+    public String deleteUser(@RequestParam(name = "user_id", required = true) Long id, Model model) {
+        userService.deleteById(id);
+        model.addAttribute("users", userService.findAll());
+        return "/users-list";
+    }
 }
