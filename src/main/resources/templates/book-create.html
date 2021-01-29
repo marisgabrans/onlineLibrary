@@ -62,6 +62,10 @@
             <input class="form-control" type="number" th:field="*{pages}" id="pages" placeholder="Pages">
             <span th:if="${#fields.hasErrors('pages')}" th:errors="*{pages}" class="text-danger"></span>
             <br>
+            <label for="pages">Quantity</label>
+            <input class="form-control" type="number" th:field="*{quantity}" id="quantity" placeholder="Quantity">
+            <span th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}" class="text-danger"></span>
+            <br>
             <label for="description">Description</label>
             <textarea class="form-control" rows="3" th:field="*{description}" id="description"
                       placeholder="Description"></textarea>

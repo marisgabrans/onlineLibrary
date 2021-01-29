@@ -86,7 +86,7 @@
 <br>
 <!--<a th:href="@{/book-update?book_id={id}(id=${book.id})}">Edit book</a>-->
 <div class="container-xl pl-3">
-    <p><a class="btn btn-outline-info" href="@{/book-update?book_id={id}(id=${book.id})}">Edit book</a></p>
+    <p><a class="btn btn-outline-info" th:href="@{/book-update?book_id={id}(id=${book.id})}">Edit book</a></p>
 </div>
 <br>
 <!--<a th:href="@{/book-delete?book_id={id}(id=${book.id})}">Delete book</a>-->
