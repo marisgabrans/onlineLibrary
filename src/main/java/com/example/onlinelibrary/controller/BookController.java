@@ -7,6 +7,7 @@ import com.example.onlinelibrary.service.AuthorService;
 import com.example.onlinelibrary.service.BookService;
 import com.example.onlinelibrary.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -32,16 +33,33 @@ public class BookController {
         this.authorService = authorService;
     }
 
+//    @GetMapping("/books")
+//    public String findAll(Model model) {
+//        List<Book> books = bookService.findAll();
+//        List<Genre> genres = genreService.findAll();
+//        List<Author> authors = authorService.findAll();
+//        model.addAttribute("books", books);
+//        model.addAttribute("genres", genres);
+//        model.addAttribute("authors", authors);
+//        return "/books-list";
+//    }
+
     @GetMapping("/books")
-    public String findAll(Model model) {
-        List<Book> books = bookService.findAll();
+    public String findAll(Model model, @Param("keyword") String keyword) {
+        List<Book> books = bookService.search(keyword);
+        model.addAttribute("books", books);
+        model.addAttribute("keyword", keyword);
         List<Genre> genres = genreService.findAll();
         List<Author> authors = authorService.findAll();
-        model.addAttribute("books", books);
         model.addAttribute("genres", genres);
         model.addAttribute("authors", authors);
+
         return "/books-list";
     }
+
+
+
+
 
     @GetMapping("/book-create")
     public String createBookForm(Model model) {

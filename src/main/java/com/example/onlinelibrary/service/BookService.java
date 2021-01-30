@@ -84,4 +84,13 @@ import java.util.List;
             emailSender.send(message);
         }
 
+
+        public List<Book> search(String keyword) {
+            if (keyword != null) {
+                return bookRepository.search(keyword);
+            }
+            return bookRepository.findAll();
+        }
+
+
     }
