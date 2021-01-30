@@ -62,17 +62,19 @@ public class UserController {
     @PostMapping("/user-update")
     public String updateUser(@RequestParam (name = "user_id", required = true) Long user_id, @ModelAttribute @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            user.setId(user_id);
+//            user.setId(user_id);
             return "/user-update";
         }
         userService.updateUser(user, user_id);
         model.addAttribute("users", userService.findAll());
         return "/users-list";
     }
+
     @GetMapping("/user-delete")
     public String deleteUser(@RequestParam(name = "user_id", required = true) Long id, Model model) {
         userService.deleteById(id);
         model.addAttribute("users", userService.findAll());
         return "/users-list";
     }
+
 }

@@ -75,6 +75,7 @@
                     <th>Last name</th>
                     <th>Email</th>
                     <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -84,6 +85,7 @@
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
                     <td><a th:href="@{/user-update?user_id={id}(id=${user.id})}">Edit</a></td>
+                    <td><a th:href="@{/user-delete?user_id={id}(id=${user.id})}">Delete</a></td>
                 </tr>
                 </tbody>
             </table>

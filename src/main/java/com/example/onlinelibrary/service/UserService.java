@@ -35,6 +35,9 @@ public class UserService implements UserDetailsService {
     }
 
     public User saveUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            // if email taken,show some err msg
+        }
         User newUser = new User();
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
@@ -45,6 +48,9 @@ public class UserService implements UserDetailsService {
     }
 
     public User updateUser(User userDetails, Long id) {
+        if (userRepository.findByEmail(userDetails.getEmail()) != null) {
+            // check if email is taken by *someone else* not the user itself
+        }
         User user = userRepository.findUserById(id);
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
@@ -52,8 +58,6 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         return userRepository.save(user);
     }
-
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
