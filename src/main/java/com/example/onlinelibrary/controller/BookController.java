@@ -33,33 +33,17 @@ public class BookController {
         this.authorService = authorService;
     }
 
-//    @GetMapping("/books")
-//    public String findAll(Model model) {
-//        List<Book> books = bookService.findAll();
-//        List<Genre> genres = genreService.findAll();
-//        List<Author> authors = authorService.findAll();
-//        model.addAttribute("books", books);
-//        model.addAttribute("genres", genres);
-//        model.addAttribute("authors", authors);
-//        return "/books-list";
-//    }
-
     @GetMapping("/books")
     public String findAll(Model model, @Param("keyword") String keyword) {
-        List<Book> books = bookService.search(keyword);
-        model.addAttribute("books", books);
-        model.addAttribute("keyword", keyword);
         List<Genre> genres = genreService.findAll();
         List<Author> authors = authorService.findAll();
+        List<Book> books = bookService.search(keyword);
+        model.addAttribute("books", books);
         model.addAttribute("genres", genres);
         model.addAttribute("authors", authors);
-
+        model.addAttribute("keyword", keyword);
         return "/books-list";
     }
-
-
-
-
 
     @GetMapping("/book-create")
     public String createBookForm(Model model) {

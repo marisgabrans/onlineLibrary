@@ -3,6 +3,7 @@ package com.example.onlinelibrary.controller;
 import com.example.onlinelibrary.model.User;
 import com.example.onlinelibrary.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -21,11 +22,13 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String findAll(Model model) {
-        List<User> users = userService.findAll();
+    public String users(Model model, @Param("keyword") String keyword) {
+        List<User> users = userService.search(keyword);
         model.addAttribute("users", users);
+        model.addAttribute("keyword", keyword);
         return "/users-list";
     }
+
 
     @GetMapping("/users/{id}")
     public String findUserById(@PathVariable("id") Long id, Model model) {

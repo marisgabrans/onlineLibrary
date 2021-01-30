@@ -74,12 +74,18 @@ public class UserService implements UserDetailsService {
     }
 
     public User findUserById(Long id) {
-        User user = userRepository.findUserById(id);
-        return user;
+        return userRepository.findUserById(id);
     }
 
     public void deleteById(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public List<User> search(String keyword) {
+        if (keyword != null) {
+            return userRepository.search(keyword);
+        }
+        return userRepository.findAll();
     }
 
 }
