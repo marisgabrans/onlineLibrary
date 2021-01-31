@@ -31,6 +31,9 @@ public class UserRegistrationController {
 
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") User user) {
+        if(userService.findEmail(user.getEmail()) != null) {                //FIXME this saves from 500
+            return "redirect:/books";                                       //FIXME when user email is taken
+        }
         userService.saveUser(user);
         return "redirect:/registration?success";
     }

@@ -30,6 +30,10 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    public User findEmail(String email) {
+        return  userRepository.findByEmail(email);
+    }
+
     public List<User> findAll( ) {
         return userRepository.findAll();
     }
