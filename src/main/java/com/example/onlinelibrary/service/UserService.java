@@ -49,7 +49,7 @@ public class UserService implements UserDetailsService {
 
     public User updateUser(User userDetails, Long id) {
         if (userRepository.findByEmail(userDetails.getEmail()) != null) {
-            // check if email is taken by *someone else* not the user itself
+            // verify if
         }
         User user = userRepository.findUserById(id);
         user.setFirstName(userDetails.getFirstName());
