@@ -72,13 +72,14 @@ public class BookController {
 
     @GetMapping("/book-page")
     public String bookPage(Model model, @RequestParam(name = "book_id", required = false) Long book_id) {
+        Book book = null;
         try {
-            List<Book> books = bookService.findAll();
-            Book book = bookService.findById(book_id);
-            model.addAttribute("book", book);
+            book = bookService.findById(book_id);
         } catch (Exception e) {
             return "/books-list";
         }
+        List<Book> books = bookService.findAll();
+        model.addAttribute("book", book);
         return "/book-page";
     }
 
@@ -114,7 +115,7 @@ public class BookController {
             Book book = bookService.findById(id);
             bookService.deleteBook(book);
         } catch (Exception e) {
-            return "/books-list";
+            return "redirect:/books";
         }
         model.addAttribute("books", bookService.findAll());
         return "redirect:/books";
