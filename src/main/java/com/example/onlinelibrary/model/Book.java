@@ -95,4 +95,5 @@ public class Book {
     public void setCover(byte[] cover) {
         this.cover = cover;
     }
+
 }
