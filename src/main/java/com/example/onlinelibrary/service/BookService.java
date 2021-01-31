@@ -66,7 +66,9 @@ import java.util.List;
                 quantity = quantity - 1;
                 book.setQuantity(quantity);
                 bookRepository.save(book);
-                sendSimpleMessage("eriks.cuhrukidze@gmail.com", "test", "test");
+                sendSimpleMessage("eriks.cuhrukidze@gmail.com", "Your reservation confirmed",
+                        "Dear customer," +
+                                "\n\nThank you for choosing Online Library. We are pleased to confirm your reservation. You have 24 hours to pick up the selected book.");
                 return true;
             }
         }
