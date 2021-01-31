@@ -47,6 +47,10 @@ import java.util.List;
             bookRepository.deleteById(id);
         }
 
+        public void deleteBook(Book book) {
+            bookRepository.delete(book);
+        }
+
         public Book updateBook(Book bookDetails, Long id) {
             Book book = bookRepository.findBookById(id);
             book.setTitle(bookDetails.getTitle());
