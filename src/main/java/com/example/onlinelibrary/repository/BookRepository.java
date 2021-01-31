@@ -16,7 +16,7 @@ public interface BookRepository extends JpaRepository<Book, Long> {
             "ON b.author_id = a.author_id " +
             "JOIN genre g " +
             "ON b.genre_id = g.genre_id " +
-            "WHERE CONCAT(title, ' ', first_name, ' ', last_name, ' ', genre_name, ' ', description) " +
+            "WHERE CONCAT(book_id, ' ', title, ' ', first_name, ' ', last_name, ' ', genre_name, ' ', description) " +
             "LIKE %:keyword%", nativeQuery = true)
     List<Book> search(@Param("keyword") String keyword);
 
