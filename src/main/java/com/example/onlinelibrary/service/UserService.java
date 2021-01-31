@@ -39,9 +39,6 @@ public class UserService implements UserDetailsService {
     }
 
     public User saveUser(User user) {
-        if (userRepository.findByEmail(user.getEmail()) != null) {
-            // if email taken,show some err msg
-        }
         User newUser = new User();
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
