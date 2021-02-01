@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container-fluid pt-3 pb-1 text-center container-bg">
@@ -27,7 +26,7 @@
     <hr class="style-one">
 </div>
 </br>
-<div class="container-md pt-3">
+<div class="container-md pt-3 pb-3 container-bg rounded">
     <div class="form-group">
         <form action="#" th:action="@{/author-update?author_id={id}(id=${author.id})}" th:object="${author}" method="post">
             <label for="id">Id</label>

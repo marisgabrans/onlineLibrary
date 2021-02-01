@@ -11,7 +11,7 @@
           crossorigin="anonymous">
     <link th:href="@{/css/container-bg.css}" rel="stylesheet">
     <style>
-        body{
+        body {
             background-image: url("https://images.unsplash.com/photo-1517244649640-fcacab5ce213?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=658&q=80");
             background-size: cover;
         }
@@ -19,7 +19,6 @@
 </head>
 
 <body>
-
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container-fluid pt-3 pb-1 text-center container-bg">
@@ -28,7 +27,7 @@
 </div>
 </br>
 </div>
-<div class="container-md pt-3">
+<div class="container-md pt-3 pb-3 container-bg rounded">
     <div class="form-group">
         <form action="#" th:action="@{/author-create}" th:object="${author}" method="post">
             <label for="firstName">First name</label>

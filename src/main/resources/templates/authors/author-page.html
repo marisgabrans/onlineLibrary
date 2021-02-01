@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en"
       xmlns:th="http://www.w3.org/1999/xhtml"
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
@@ -28,7 +29,6 @@
 </head>
 
 <body>
-
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container-fluid pt-3 pb-1 text-center container-bg">
@@ -36,87 +36,23 @@
     <hr class="style-one">
 </div>
 </br>
-<div class="container-xl p-1 container-bg rounded">
-    <table class="table table-hover">
-        <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>First name</th>
-            <th>Last name</th>
-        </thead>
-        </tr>
-        <tr>
-            <td th:text="${author.id}"></td>
-            <td th:text="${author.firstName}"></td>
-            <td th:text="${author.lastName}"></td>
-        </tr>
-    </table>
-</div>
-<br>
-<div class="container-xl pl-3">
-    <p><a class="btn btn-outline-info" th:href="@{/author-update?author_id={id}(id=${author.id})}">Edit Author</a></p>
-</div>
-<br>
-<div class="container-xl pl-3">
-    <p><a class="btn btn-danger" th:href="@{/author-delete?author_id={id}(id=${author.id})}">Delete Author</a></p>
-</div>
 <div class="container-md">
-    <div class="col-md-12 container-bg rounded" style="float:left">
-        <div class = "row">
-            <div class="col-sm-6 pt-3" style="float:left; height: 300px">
-                <p style="text-align: center"><img class="image" th:src="@{'/imageDisplay?id='+${book.id}}" border=3
-                                                   height=250 width=150
-                                                   alt="Book cover"></p>
-            </div>
-            <div class="col-sm-6 pt-3" style="float:left; height: 300px">
-                <div class="col-12 book-pg-info">
-                    <div class="col-6 book-pg-label">
-                        <p>Author:</p>
-                    </div>
-                    <div class="col-6 book-pg-prop">
-                        <p th:text="${book.author.firstName + ' ' + book.author.lastName}"></p>
-                    </div>
-                </div>
-                <div class="col-12 book-pg-info">
-                    <div class="col-6 book-pg-label">
-                        <p>Genre:</p>
-                    </div>
-                    <div class="col-6 book-pg-prop">
-                        <p th:text="${book.genre.genre_name}"></p>
-                    </div>
-                </div>
-                <div class="col-12 book-pg-info">
-                    <div class="col-6 book-pg-label">
-                        <p>Pages:</p>
-                    </div>
-                    <div class="col-6 book-pg-prop">
-                        <p th:text="${book.pages}"></p>
-                    </div>
-                </div>
-                <div class="col-12 book-pg-info">
-                    <div class="col-6 book-pg-label">
-                        <p>Quantity:</p>
-                    </div>
-                    <div class="col-6 book-pg-prop">
-                        <p th:text="${book.quantity}"></p>
-                    </div>
-                </div>
-                <div class="col-12 book-pg-info">
-                    <p><a class="btn btn-outline-info" style="width: 100%" th:href="@{/book-reservation?book_id={id}(id=${book.id})}">Make
-                        reservation</a></p>
-                </div>
+    <div class="col-md-12 container-bg rounded">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 th:text="${author.firstName + ' ' + author.lastName}"
+                    style="text-align: center; font-style: italic;
+                   font-family: American Typewriter, serif; font-weight: 400"></h1>
             </div>
         </div>
-        <div class = "row">
-            <div class="col-12 pt-3 pb-3" th:text="${book.description}" style="float:left; text-align: center">
-            </div>
-        </div>
-        <div class = "row">
+        <div class="row">
             <div class="col-6 pt-3" style="float:left; text-align: center">
-                <p><a class="btn btn-outline-info" th:href="@{/book-update?book_id={id}(id=${book.id})}">Edit book</a></p>
+                <p><a class="btn btn-outline-info" th:href="@{/author-update?author_id={id}(id=${author.id})}">Edit
+                    Author</a></p>
             </div>
             <div class="col-6 pt-3" style="float:left; text-align: center">
-                <p><a class="btn btn-danger" th:href="@{/book-delete?book_id={id}(id=${book.id})}">Delete book</a></p>
+                <p><a class="btn btn-danger" th:href="@{/author-delete?author_id={id}(id=${author.id})}">Delete
+                    Author</a></p>
             </div>
         </div>
     </div>
