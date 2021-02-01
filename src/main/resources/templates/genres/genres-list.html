@@ -29,22 +29,8 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/books}">Books</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/users}">Users</a>
-        </li>
-        <li class="nav-item" sec:genreize="isAuthenticated()">
-            <a class="nav-link" th:href="@{/logout}">Logout</a>
-        </li>
-    </ul>
-</nav>
+<div th:replace="fragments/navbar :: navbar"></div>
+
 <div class="container-fluid pt-3 pb-1 text-center container-bg">
     <h2>Genres</h2>
     <hr class="style-one">
@@ -66,7 +52,7 @@
     </div>
 </section>
 </br>
-<div class="container-xl p-0 container-bg" th:switch="${genres}">
+<div class="container-xl p-0 container-bg rounded" th:switch="${genres}">
     </br>
     <div class="container-xl pl-3">
         <p><a href="/genre-create" class="btn btn-outline-info">Create genre</a></p>

@@ -28,50 +28,32 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/books}">Books</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/users}">Users</a>
-        </li>
-        <li class="nav-item" sec:genreize="isAuthenticated()">
-            <a class="nav-link" th:href="@{/logout}">Logout</a>
-        </li>
-    </ul>
-</nav>
+<div th:replace="fragments/navbar :: navbar"></div>
+
 <div class="container-fluid pt-3 pb-1 text-center container-bg">
     <h2>About genre</h2>
     <hr class="style-one">
 </div>
 </br>
-<div class="container-xl p-1 container-bg">
-    <table class="table table-hover">
-        <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>Genre</th>
-        </thead>
-        </tr>
-        <tr>
-            <td th:text="${genre.id}"></td>
-            <td th:text="${genre.genre_name}"></td>
-        </tr>
-    </table>
+<div class="container-md">
+    <div class="col-md-12 container-bg rounded">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 th:text="${genre.genre_name}"
+                    style="text-align: center; font-style: italic;
+                   font-family: American Typewriter, serif; font-weight: 400"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 pt-3" style="float:left; text-align: center">
+                <p><a class="btn btn-outline-info" th:href="@{/genre-update?genre_id={id}(id=${genre.id})}">Edit Genre</a></p>
+            </div>
+            <div class="col-6 pt-3" style="float:left; text-align: center">
+                <p><a class="btn btn-danger" th:href="@{/genre-delete?genre_id={id}(id=${genre.id})}">Delete Genre</a></p>
+            </div>
+        </div>
+    </div>
 </div>
-<br>
-<div class="container-xl pl-3">
-    <p><a class="btn btn-outline-info" th:href="@{/genre-update?genre_id={id}(id=${genre.id})}">Edit Genre</a></p>
-</div>
-<br>
-<div class="container-xl pl-3">
-    <p><a class="btn btn-danger" th:href="@{/genre-delete?genre_id={id}(id=${genre.id})}">Delete Genre</a></p>
-</div>
-
 </body>
 </html>
 
