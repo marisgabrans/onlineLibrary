@@ -7,8 +7,24 @@ hr.style-one {
     background: #333;
     background-image: linear-gradient(to right, #ccc, #333, #ccc);
 }
-/*.wrapper-table{*/
-/*    max-width: 1200px;*/
-/*    padding-right: 10px;*/
-/*    padding-left: 10px;*/
-/*}*/
+
+.book-pg-info{
+    height: 20%;
+    padding-left: 0;
+    padding-right: 0;
+}
+.book-pg-label{
+    float: left;
+    font-family: American Typewriter, serif;
+    font-weight: 600;
+    font-size: large;
+    padding-left: 0;
+    padding-right: 0;
+}
+.book-pg-prop{
+    float: left;
+    padding-left: 0;
+    padding-right: 0;
+    font-family: American Typewriter, serif;
+    font-size: large;
+}
