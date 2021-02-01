@@ -20,7 +20,7 @@ public class AuthorService {
         return authorRepository.getOne(id);
     }
 
-    public List<Author> findAll( ) {
+    public List<Author> findAll() {
         return authorRepository.findAll();
     }
 
@@ -30,5 +30,19 @@ public class AuthorService {
 
     public void deleteById(Long id) {
         authorRepository.deleteById(id);
+    }
+
+    public Author updateAuthor(Author authorForUpdate, Long id) {
+        Author authorToBeUpdated = authorRepository.getOne(id);
+        authorToBeUpdated.setFirstName(authorForUpdate.getFirstName());
+        authorToBeUpdated.setLastName(authorForUpdate.getLastName());
+        return authorRepository.save(authorToBeUpdated);
+    }
+
+    public List<Author> search(String keyword) {
+        if (keyword != null) {
+            return authorRepository.search(keyword);
+        }
+        return authorRepository.findAll();
     }
 }
