@@ -1,6 +1,6 @@
-<html lang="en"
-      xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
@@ -132,10 +132,12 @@
         </div>
         <div class = "row">
             <div class="col-6 pt-3" style="float:left; text-align: center">
-                <p><a class="btn btn-outline-info" th:href="@{/book-update?book_id={id}(id=${book.id})}">Edit book</a></p>
+                <p><a class="btn btn-outline-info" th:href="@{/book-update?book_id={id}(id=${book.id})}"
+                      sec:authorize="hasAuthority('ROLE_ADMIN')">Edit book</a></p>
             </div>
             <div class="col-6 pt-3" style="float:left; text-align: center">
-                <p><a class="btn btn-danger" th:href="@{/book-delete?book_id={id}(id=${book.id})}">Delete book</a></p>
+                <p><a class="btn btn-danger" th:href="@{/book-delete?book_id={id}(id=${book.id})}"
+                      sec:authorize="hasAuthority('ROLE_ADMIN')">Delete book</a></p>
             </div>
         </div>
     </div>
