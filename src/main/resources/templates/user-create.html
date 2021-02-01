@@ -52,7 +52,7 @@
             <input class="form-control" type="text" th:field="*{lastName}" id="lastName" placeholder="Last name">
             <span th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="text-danger"></span>
             <br>
-            <label for="email" class = 'form-label'>Email</label>
+            <label for="email" class = 'form-label'>Email</label> <span th:text="${errMsg}" class="text-danger"></span>
             <input class="form-control" type="text" th:field="*{email}" id="email" placeholder="Email">
             <span th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></span>
             <br>

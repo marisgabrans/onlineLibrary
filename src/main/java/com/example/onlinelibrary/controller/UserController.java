@@ -46,6 +46,9 @@ public class UserController {
     public String createUser(@ModelAttribute @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()){
             return "/user-create";
+        } else if(userService.findEmail(user.getEmail()) != null) {
+            model.addAttribute("errMsg", " This email address is already taken!");
+            return "/user-update";
         }
         userService.saveUser(user);
         model.addAttribute("user", user);
@@ -64,7 +67,10 @@ public class UserController {
                              @ModelAttribute @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "/user-update";
-        }
+        } else if(userService.findEmail(user.getEmail()) != null) {
+        model.addAttribute("errMsg", " This email address is already taken!");
+        return "/user-update";
+    }
         userService.updateUser(user, user_id);
         model.addAttribute("users", userService.findAll());
         return "/users-list";
