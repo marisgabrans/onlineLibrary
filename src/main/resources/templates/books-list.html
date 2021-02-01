@@ -54,7 +54,7 @@
     <hr class="style-one">
 </div>
 </br>
-<section class="search-sec container-bg rounded">
+<section class="search-sec container-bg">
     <div class="container">
         <div class="col-lg-12">
             <form class="d-flex flex-row" th:action="@{/books}">
@@ -97,7 +97,7 @@
     </div>
 </section>
 </br>
-<div class="container-xl p-0 container-bg" th:switch="${books}">
+<div class="container-xl p-0 container-bg rounded" th:switch="${books}">
     </br>
     <div class="container-xl pl-3">
         <p><a href="/book-create" class="btn btn-outline-info">Create book</a></p>
