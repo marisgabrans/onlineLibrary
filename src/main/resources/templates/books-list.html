@@ -28,27 +28,8 @@
     </style>
 </head>
 
-<body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/books}">Books</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/users}">Users</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/authors}">Authors</a>
-        </li>
-        <li class="nav-item" sec:authorize="isAuthenticated()">
-            <a class="nav-link" th:href="@{/logout}">Logout</a>
-        </li>
+<div th:replace="fragments/navbar :: navbar"></div>
 
-    </ul>
-</nav>
 <div class="container-fluid pt-3 pb-1 text-center container-bg">
     <h2>Books</h2>
     <hr class="style-one">
@@ -67,33 +48,6 @@
             </form>
         </div>
 
-<!--        <form action="#" method="post" novalidate="novalidate">-->
-<!--            <div class="row">-->
-<!--                <div class="col-lg-12">-->
-<!--                    <div class="row">-->
-<!--                        -->
-<!--                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">-->
-<!--                            <input type="text" class="form-control search-slt" placeholder="Name">-->
-<!--                        </div>-->
-<!--                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">-->
-<!--                            <select class="form-control search-slt" id="exampleFormControlSelect2">-->
-<!--                                <option th:value = "-1" th:text = "Author"></option>-->
-<!--                                <option th:each="author : ${authors}" th:value="${author.id}" th:text="${author.firstName + ' ' + author.lastName}"></option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">-->
-<!--                            <select class="form-control search-slt" id="exampleFormControlSelect1">-->
-<!--                                <option th:value = "-1" th:text = "Genre"></option>-->
-<!--                                <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.genre_name}"></option>-->
-<!--                            </select>-->
-<!--                        </div>-->
-<!--                        <div class="col-lg-3 col-md-3 col-sm-12 p-0">-->
-<!--                            <button type="button" class="btn btn-info wrn-btn">Search</button>-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </form>-->
     </div>
 </section>
 </br>
@@ -102,17 +56,6 @@
     <div class="container-xl pl-3">
         <p><a href="/book-create" class="btn btn-outline-info">Create book</a></p>
     </div>
-
-<!--    <div class="col-lg-12">-->
-<!--        <form class="d-flex flex-row" th:action="@{/books}">-->
-<!--            <div class="w-15 justify-content-center align-self-center"> Filter:</div>-->
-<!--            <input type="text" class="form-control search-slt" name="keyword" id="keyword" size="50" th:value="${keyword}" required />-->
-<!--            &nbsp;-->
-<!--            <input type="submit" class="w-15 btn btn-info" value="Search" />-->
-<!--            &nbsp;-->
-<!--            <input type="button" class="w-15 btn btn-secondary" value="Clear" id="btnClear" onclick="clearSearch()" />-->
-<!--        </form>-->
-<!--    </div>-->
 
     <h2 class="alert alert-warning text-center" th:case="null">No books found!</h2>
     <div th:case="*">
