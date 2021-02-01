@@ -53,7 +53,7 @@
 <div class="container-xl p-0 container-bg rounded" th:switch="${books}">
     </br>
     <div class="container-xl pl-3">
-        <p><a href="/book-create" class="btn btn-outline-info">Create book</a></p>
+        <p><a href="/book-create" class="btn btn-outline-info" sec:authorize="hasAuthority('ROLE_ADMIN')">Create book</a></p>
     </div>
 
     <h2 class="alert alert-warning text-center" th:case="null">No books found!</h2>
