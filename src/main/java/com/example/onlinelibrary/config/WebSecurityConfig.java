@@ -30,12 +30,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests().antMatchers(
-                    "/registration**",
-                    "/js/**",
-                    "/css/**",
-                    "/img/**")
-                    .permitAll()
+        http.authorizeRequests()
+                    .antMatchers(
+                        "/registration**",
+                        "/js/**",
+                        "/css/**",
+                        "/images/**")
+                .permitAll()
+                    .antMatchers("/books").hasAnyRole("ADMIN","USER")
+                    .antMatchers("/book-page").hasAnyRole("ADMIN","USER")
+                    .antMatchers("/book-reservation").hasAnyRole("ADMIN, USER")
+                    .antMatchers("/book**").hasAnyRole("ADMIN")
+                    .antMatchers("/users").hasRole("ADMIN")
+                    .antMatchers("/user**").hasRole("ADMIN")
+                    .antMatchers("/authors").hasRole("ADMIN")
+                    .antMatchers("/author**").hasRole("ADMIN")
                     .anyRequest()
                     .authenticated()
                 .and()
@@ -49,7 +58,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                     .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                     .logoutSuccessUrl("/login?logout")
                     .permitAll();
-    }
+        }
 
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {

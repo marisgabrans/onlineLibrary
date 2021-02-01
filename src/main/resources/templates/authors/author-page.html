@@ -1,10 +1,10 @@
-<html lang="en"
-      xmlns:th="http://www.w3.org/1999/xhtml"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
       xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>About author</title>
+    <title th:text="${author.firstName + ' ' + author.lastName}">About author</title>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
@@ -28,51 +28,33 @@
 </head>
 
 <body>
-<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/}">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/books}">Books</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" th:href="@{/users}">Users</a>
-        </li>
-        <li class="nav-item" sec:authorize="isAuthenticated()">
-            <a class="nav-link" th:href="@{/logout}">Logout</a>
-        </li>
-    </ul>
-</nav>
+<div th:replace="fragments/navbar :: navbar"></div>
+
 <div class="container-fluid pt-3 pb-1 text-center container-bg">
     <h2>About author</h2>
     <hr class="style-one">
 </div>
 </br>
-<div class="container-xl p-1 container-bg">
-    <table class="table table-hover">
-        <thead class="thead-dark">
-        <tr>
-            <th>Id</th>
-            <th>First name</th>
-            <th>Last name</th>
-        </thead>
-        </tr>
-        <tr>
-            <td th:text="${author.id}"></td>
-            <td th:text="${author.firstName}"></td>
-            <td th:text="${author.lastName}"></td>
-        </tr>
-    </table>
+<div class="container-md">
+    <div class="col-md-12 container-bg rounded">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 th:text="${author.firstName + ' ' + author.lastName}"
+                    style="text-align: center; font-style: italic;
+                   font-family: American Typewriter, serif; font-weight: 400"></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-6 pt-3" style="float:left; text-align: center">
+                <p><a class="btn btn-outline-info" th:href="@{/author-update?author_id={id}(id=${author.id})}">Edit
+                    Author</a></p>
+            </div>
+            <div class="col-6 pt-3" style="float:left; text-align: center">
+                <p><a class="btn btn-danger" th:href="@{/author-delete?author_id={id}(id=${author.id})}">Delete
+                    Author</a></p>
+            </div>
+        </div>
+    </div>
 </div>
-<br>
-<div class="container-xl pl-3">
-    <p><a class="btn btn-outline-info" th:href="@{/author-update?author_id={id}(id=${author.id})}">Edit Author</a></p>
-</div>
-<br>
-<div class="container-xl pl-3">
-    <p><a class="btn btn-danger" th:href="@{/author-delete?author_id={id}(id=${author.id})}">Delete Author</a></p>
-</div>
-
 </body>
 </html>

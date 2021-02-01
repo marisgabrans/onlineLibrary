@@ -1,19 +1,15 @@
 package com.example.onlinelibrary.controller;
 
 import com.example.onlinelibrary.model.Author;
-import com.example.onlinelibrary.model.Book;
-import com.example.onlinelibrary.model.Genre;
 import com.example.onlinelibrary.service.AuthorService;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.validation.Valid;
 import java.util.List;
 
 
