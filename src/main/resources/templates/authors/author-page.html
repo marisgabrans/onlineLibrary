@@ -4,7 +4,7 @@
       xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="UTF-8">
-    <title>About author</title>
+    <title th:text="${author.firstName + ' ' + author.lastName}">About author</title>
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
           integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
@@ -76,6 +76,66 @@
 <div class="container-xl pl-3">
     <p><a class="btn btn-danger" th:href="@{/author-delete?author_id={id}(id=${author.id})}">Delete Author</a></p>
 </div>
-
+<div class="container-md">
+    <div class="col-md-12 container-bg rounded" style="float:left">
+        <div class = "row">
+            <div class="col-sm-6 pt-3" style="float:left; height: 300px">
+                <p style="text-align: center"><img class="image" th:src="@{'/imageDisplay?id='+${book.id}}" border=3
+                                                   height=250 width=150
+                                                   alt="Book cover"></p>
+            </div>
+            <div class="col-sm-6 pt-3" style="float:left; height: 300px">
+                <div class="col-12 book-pg-info">
+                    <div class="col-6 book-pg-label">
+                        <p>Author:</p>
+                    </div>
+                    <div class="col-6 book-pg-prop">
+                        <p th:text="${book.author.firstName + ' ' + book.author.lastName}"></p>
+                    </div>
+                </div>
+                <div class="col-12 book-pg-info">
+                    <div class="col-6 book-pg-label">
+                        <p>Genre:</p>
+                    </div>
+                    <div class="col-6 book-pg-prop">
+                        <p th:text="${book.genre.genre_name}"></p>
+                    </div>
+                </div>
+                <div class="col-12 book-pg-info">
+                    <div class="col-6 book-pg-label">
+                        <p>Pages:</p>
+                    </div>
+                    <div class="col-6 book-pg-prop">
+                        <p th:text="${book.pages}"></p>
+                    </div>
+                </div>
+                <div class="col-12 book-pg-info">
+                    <div class="col-6 book-pg-label">
+                        <p>Quantity:</p>
+                    </div>
+                    <div class="col-6 book-pg-prop">
+                        <p th:text="${book.quantity}"></p>
+                    </div>
+                </div>
+                <div class="col-12 book-pg-info">
+                    <p><a class="btn btn-outline-info" style="width: 100%" th:href="@{/book-reservation?book_id={id}(id=${book.id})}">Make
+                        reservation</a></p>
+                </div>
+            </div>
+        </div>
+        <div class = "row">
+            <div class="col-12 pt-3 pb-3" th:text="${book.description}" style="float:left; text-align: center">
+            </div>
+        </div>
+        <div class = "row">
+            <div class="col-6 pt-3" style="float:left; text-align: center">
+                <p><a class="btn btn-outline-info" th:href="@{/book-update?book_id={id}(id=${book.id})}">Edit book</a></p>
+            </div>
+            <div class="col-6 pt-3" style="float:left; text-align: center">
+                <p><a class="btn btn-danger" th:href="@{/book-delete?book_id={id}(id=${book.id})}">Delete book</a></p>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>
