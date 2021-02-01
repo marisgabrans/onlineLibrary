@@ -1,6 +1,7 @@
 package com.example.onlinelibrary.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -11,8 +12,10 @@ public class Author {
     @Column(name = "author_id")
     Long id;
     @Column(name = "first_name")
+    @NotBlank(message = "First name is mandatory")
     String firstName;
     @Column(name = "last_name")
+    @NotBlank(message = "Last name is mandatory")
     String lastName;
 
     @OneToMany(cascade = CascadeType.REFRESH)

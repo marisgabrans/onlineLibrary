@@ -1,6 +1,7 @@
 package com.example.onlinelibrary.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Entity
@@ -10,6 +11,7 @@ public class Genre {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "genre_id")
     Long id;
+    @NotBlank(message = "Genre name is mandatory")
     String genre_name;
 
     @OneToMany(cascade = CascadeType.REFRESH)
