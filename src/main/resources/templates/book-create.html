@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
->
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="ISO-8859-1">
     <title>Create new book</title>
@@ -42,8 +41,7 @@
     <h2>Create new book</h2>
     <hr class="style-one">
 </div>
-</br>
-</div>
+<br>
 <div class="container-md pt-3">
     <div class="form-group">
         <form action="#" th:action="@{/book-create}" th:object="${book}" method="post">

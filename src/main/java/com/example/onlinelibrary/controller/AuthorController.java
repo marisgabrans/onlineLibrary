@@ -27,7 +27,7 @@ public class AuthorController {
 
     @GetMapping("/authors")
     public String findAll(Model model, @Param("keyword") String keyword) {
-        List<Author> authors = authorService.findAll();
+        List<Author> authors = authorService.search(keyword);
         model.addAttribute("authors", authors);
         model.addAttribute("keyword", keyword);
         return "/authors/authors-list";
@@ -40,7 +40,10 @@ public class AuthorController {
     }
 
     @PostMapping("/author-create")
-    public String createAuthor(@ModelAttribute Author author, Model model) {
+    public String createAuthor(@ModelAttribute @Valid Author author, BindingResult bindingResult, Model model) {
+        if(bindingResult.hasErrors()) {
+            return "/authors/author-create";
+        }
         authorService.saveAuthor(author);
         model.addAttribute("author", author);
         return "redirect:/authors";
@@ -50,7 +53,7 @@ public class AuthorController {
     public String authorPage(Model model, @RequestParam(name = "author_id", required = false) Long author_id) {
         Author author =  authorService.findById(author_id);
 
-        List<Author> books = authorService.findAll();
+        List<Author> authors = authorService.findAll();
         model.addAttribute("author", author);
         return "/authors/author-page";
     }
@@ -64,14 +67,17 @@ public class AuthorController {
 
     @PostMapping("/author-update")
     public String updateAuthor(@RequestParam(name = "author_id", required = true) Long id,
-                               @ModelAttribute Author author, Model model) {
+                               @ModelAttribute @Valid Author author, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasErrors()) {
+            return "/authors/author-update";
+        }
         authorService.updateAuthor(author, id);
         model.addAttribute("authors", authorService.findAll());
         return "redirect:/author-page?author_id=" + id;
     }
 
     @GetMapping("/author-delete")
-    public String deleteAuthor(@RequestParam(name = "book_id", required = true) long id, Model model) {
+    public String deleteAuthor(@RequestParam(name = "author_id", required = true) long id, Model model) {
         try {
             Author author = authorService.findById(id);
             authorService.deleteById(id);
