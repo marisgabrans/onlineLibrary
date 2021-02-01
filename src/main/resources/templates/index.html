@@ -28,21 +28,21 @@
 <br>
 <br>
 <div class="jumbotron row justify-content-center">
-    <div class="col-md-4 col-md-offset-3">
+    <div class="col-md-6 col-md-offset-3">
         <h1 class="display-4">Welcome!</h1>
 
         <div sec:authorize="hasAuthority('ROLE_USER')">
             <p class="lead">This is online library.</p>
             <hr class="my-4">
             <p>Explore our book collection by clicking the button below!</p>
-            <a class="w-25 btn btn-outline-info btn-lg" href="/books" role="button">View books</a>
+            <a class="w-25 btn btn-outline-info btn-lg index-btn-min-width" href="/books" role="button">View books</a>
         </div>
 
         <div sec:authorize="hasAuthority('ROLE_ADMIN')">
             <p>Choose one of administration pages:</p>
-            <a class="w-25 btn btn-outline-info btn-lg" href="/users" role="button">Users</a>
-            <a class="w-25 btn btn-outline-info btn-lg" href="/books" role="button">Books</a>
-            <a class="w-25 btn btn-outline-info btn-lg" href="/authors" role="button">Authors</a>
+            <a class="w-auto btn btn-outline-info btn-lg mt-1" href="/users" role="button">Users</a>
+            <a class="w-auto btn btn-outline-info btn-lg mt-1" href="/books" role="button">Books</a>
+            <a class="w-auto btn btn-outline-info btn-lg mt-1" href="/authors" role="button">Authors</a>
         </div>
 
     </div>

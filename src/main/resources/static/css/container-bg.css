@@ -28,3 +28,6 @@ hr.style-one {
     font-family: American Typewriter, serif;
     font-size: large;
 }
+.index-btn-min-width{
+    min-width: 70px;
+}
