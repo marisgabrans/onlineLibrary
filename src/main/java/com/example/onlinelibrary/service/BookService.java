@@ -12,17 +12,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import java.sql.Blob;
 import java.util.List;
 import java.util.Random;
 
 @Service
-    public class BookService {
-        private final BookRepository bookRepository;
+public class BookService {
+    private final BookRepository bookRepository;
 
         @Autowired
         private JavaMailSender emailSender;
@@ -65,60 +60,46 @@ import java.util.Random;
             return bookRepository.save(book);
         }
 
+    public boolean reservation(Book book) {
+        Integer quantity = book.getQuantity();
+        if (quantity <= 0) {
+            return false;
+        } else {
+            quantity = quantity - 1;
+            book.setQuantity(quantity);
+            bookRepository.save(book);
 
-        public boolean reservation(Book book) {
-            Integer quantity = book.getQuantity();
-            if (quantity <= 0) {
-                return false;
+            Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+            String username = null;
+            if (principal instanceof UserDetails) {
+                username = ((UserDetails) principal).getUsername();
             } else {
-                quantity = quantity - 1;
-                book.setQuantity(quantity);
-                bookRepository.save(book);
-
-                Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-                String username = null;
-                if (principal instanceof UserDetails) {
-                    username = ((UserDetails)principal).getUsername();
-                } else {
-                    username = principal.toString();
-                }
-
-                Random rand = new Random();
+                username = principal.toString();
+            }
+Random rand = new Random();
                 // Generating random integers in range 0 to 9999
-                int int1 = rand.nextInt(10000);
-
-                sendSimpleMessage(username, "Your reservation confirmed",
-                        "Dear customer," + "\n\nThank you for choosing Online Library. Your request number is #" + int1 + "!" +
+                int int1 = rand.nextInt(10000);            sendSimpleMessage(username, "Your reservation confirmed",
+                    "Dear customer," +
+                            "\n\nThank you for choosing Online Library. Your request number is #" + int1 + "!" +
                                 "\nWe are pleased to confirm your reservation. You have 24 hours to pick up the selected book." + "\n\nBook pick-up address: Krisjana Barona iela 14, Riga, LV-1050" +
                         "\nOpening hours: 08:00 - 20:00" + "\nContacts: phone - +371 26899876; e-mail: onlinelibraryteam@gmail.com" + "\n\n\n\n\nBest regards," + "\nOnlineLibrary administration.");
-                return true;
-            }
+            return true;
         }
-
-
-
-        private void sendSimpleMessage(
-                String to, String subject, String text) {
-
-
-
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setFrom("onlinelibraryteam@gmail.com");
-            message.setTo(to);
-            message.setSubject(subject);
-            message.setText(text);
-            emailSender.send(message);
-        }
-
-
-
-
-        public List<Book> search(String keyword) {
-            if (keyword != null) {
-                return bookRepository.search(keyword);
-            }
-            return bookRepository.findAll();
-        }
-
-
     }
+
+    private void sendSimpleMessage(String to, String subject, String text) {
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("onlinelibraryteam@gmail.com");
+        message.setTo(to);
+        message.setSubject(subject);
+        message.setText(text);
+        emailSender.send(message);
+    }
+
+    public List<Book> search(String keyword) {
+        if (keyword != null) {
+            return bookRepository.search(keyword);
+        }
+        return bookRepository.findAll();
+    }
+}
