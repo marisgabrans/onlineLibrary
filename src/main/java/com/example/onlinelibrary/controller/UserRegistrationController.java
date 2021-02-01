@@ -3,14 +3,10 @@ package com.example.onlinelibrary.controller;
 import com.example.onlinelibrary.model.User;
 import com.example.onlinelibrary.service.UserService;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
-import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/registration")
@@ -34,12 +30,11 @@ public class UserRegistrationController {
     }
 
     @PostMapping
-    public String registerUserAccount(@ModelAttribute @Valid User user, BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "/registration";
+    public String registerUserAccount(@ModelAttribute("user") User user) {
+        if(userService.findEmail(user.getEmail()) != null) {                //FIXME this saves from 500
+            return "redirect:/books";                                       //FIXME when user email is taken
         }
         userService.saveUser(user);
-        model.addAttribute("user", user);
         return "redirect:/registration?success";
     }
 

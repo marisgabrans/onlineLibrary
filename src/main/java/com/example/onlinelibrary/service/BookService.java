@@ -8,6 +8,8 @@ import com.example.onlinelibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.CascadeType;
@@ -45,6 +47,10 @@ import java.util.List;
             bookRepository.deleteById(id);
         }
 
+        public void deleteBook(Book book) {
+            bookRepository.delete(book);
+        }
+
         public Book updateBook(Book bookDetails, Long id) {
             Book book = bookRepository.findBookById(id);
             book.setTitle(bookDetails.getTitle());
@@ -58,6 +64,7 @@ import java.util.List;
             return bookRepository.save(book);
         }
 
+
         public boolean reservation(Book book) {
             Integer quantity = book.getQuantity();
             if (quantity <= 0) {
@@ -66,7 +73,18 @@ import java.util.List;
                 quantity = quantity - 1;
                 book.setQuantity(quantity);
                 bookRepository.save(book);
-                sendSimpleMessage("eriks.cuhrukidze@gmail.com", "test", "test");
+
+                Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+                String username = null;
+                if (principal instanceof UserDetails) {
+                    username = ((UserDetails)principal).getUsername();
+                } else {
+                    username = principal.toString();
+                }
+
+                sendSimpleMessage(username, "Your reservation confirmed",
+                        "Dear customer," +
+                                "\n\nThank you for choosing Online Library. We are pleased to confirm your reservation. You have 24 hours to pick up the selected book.");
                 return true;
             }
         }
@@ -76,6 +94,8 @@ import java.util.List;
         private void sendSimpleMessage(
                 String to, String subject, String text) {
 
+
+
             SimpleMailMessage message = new SimpleMailMessage();
             message.setFrom("worms.boook@gmail.com");
             message.setTo(to);
@@ -83,5 +103,16 @@ import java.util.List;
             message.setText(text);
             emailSender.send(message);
         }
+
+
+
+
+        public List<Book> search(String keyword) {
+            if (keyword != null) {
+                return bookRepository.search(keyword);
+            }
+            return bookRepository.findAll();
+        }
+
 
     }

@@ -7,6 +7,7 @@ import com.example.onlinelibrary.service.AuthorService;
 import com.example.onlinelibrary.service.BookService;
 import com.example.onlinelibrary.service.GenreService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,13 +34,14 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public String findAll(Model model) {
-        List<Book> books = bookService.findAll();
+    public String findAll(Model model, @Param("keyword") String keyword) {
         List<Genre> genres = genreService.findAll();
         List<Author> authors = authorService.findAll();
+        List<Book> books = bookService.search(keyword);
         model.addAttribute("books", books);
         model.addAttribute("genres", genres);
         model.addAttribute("authors", authors);
+        model.addAttribute("keyword", keyword);
         return "/books-list";
     }
 
@@ -69,9 +71,14 @@ public class BookController {
     }
 
     @GetMapping("/book-page")
-    public String bookPage(Model model, @RequestParam(name = "book_id", required = true) Long book_id) {
+    public String bookPage(Model model, @RequestParam(name = "book_id", required = false) Long book_id) {
+        Book book = null;
+        try {
+            book = bookService.findById(book_id);
+        } catch (Exception e) {
+            return "/books-list";
+        }
         List<Book> books = bookService.findAll();
-        Book book = bookService.findById(book_id);
         model.addAttribute("book", book);
         return "/book-page";
     }
@@ -104,9 +111,14 @@ public class BookController {
 
     @GetMapping("/book-delete")
     public String deleteBook(@RequestParam(name = "book_id", required = true) long id, Model model) {
-        bookService.deleteById(id);
+        try {
+            Book book = bookService.findById(id);
+            bookService.deleteBook(book);
+        } catch (Exception e) {
+            return "redirect:/books";
+        }
         model.addAttribute("books", bookService.findAll());
-        return "/books-list";
+        return "redirect:/books";
     }
 
     @GetMapping("/book-reservation")

@@ -15,7 +15,7 @@ public class Author {
     @Column(name = "last_name")
     String lastName;
 
-    @OneToMany(cascade = CascadeType.ALL)
+    @OneToMany(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "author_id")
     private List<Book> books;
 

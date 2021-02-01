@@ -30,11 +30,18 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    public User findEmail(String email) {
+        return  userRepository.findByEmail(email);
+    }
+
     public List<User> findAll( ) {
         return userRepository.findAll();
     }
 
     public User saveUser(User user) {
+        if (userRepository.findByEmail(user.getEmail()) != null) {
+            // if email taken,show some err msg
+        }
         User newUser = new User();
         newUser.setFirstName(user.getFirstName());
         newUser.setLastName(user.getLastName());
@@ -45,6 +52,9 @@ public class UserService implements UserDetailsService {
     }
 
     public User updateUser(User userDetails, Long id) {
+        if (userRepository.findByEmail(userDetails.getEmail()) != null) {
+            // verify if
+        }
         User user = userRepository.findUserById(id);
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
@@ -52,8 +62,6 @@ public class UserService implements UserDetailsService {
         user.setPassword(passwordEncoder.encode(userDetails.getPassword()));
         return userRepository.save(user);
     }
-
-
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -74,12 +82,18 @@ public class UserService implements UserDetailsService {
     }
 
     public User findUserById(Long id) {
-        User user = userRepository.findUserById(id);
-        return user;
+        return userRepository.findUserById(id);
     }
 
     public void deleteById(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public List<User> search(String keyword) {
+        if (keyword != null) {
+            return userRepository.search(keyword);
+        }
+        return userRepository.findAll();
     }
 
 }

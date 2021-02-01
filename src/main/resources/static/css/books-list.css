@@ -34,3 +34,8 @@
         background: #e2e3e5;
     }
 }
+
+.w-15 {
+    width: 15% !important;
+    min-width: fit-content;
+}
