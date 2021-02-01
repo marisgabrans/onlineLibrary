@@ -18,8 +18,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.sql.Blob;
 import java.util.List;
+import java.util.Random;
 
-    @Service
+@Service
     public class BookService {
         private final BookRepository bookRepository;
 
@@ -82,9 +83,14 @@ import java.util.List;
                     username = principal.toString();
                 }
 
+                Random rand = new Random();
+                // Generating random integers in range 0 to 9999
+                int int1 = rand.nextInt(10000);
+
                 sendSimpleMessage(username, "Your reservation confirmed",
-                        "Dear customer," +
-                                "\n\nThank you for choosing Online Library. We are pleased to confirm your reservation. You have 24 hours to pick up the selected book.");
+                        "Dear customer," + "\n\nThank you for choosing Online Library. Your request number is #" + int1 + "!" +
+                                "\nWe are pleased to confirm your reservation. You have 24 hours to pick up the selected book." + "\n\nBook pick-up address: Krisjana Barona iela 14, Riga, LV-1050" +
+                        "\nOpening hours: 08:00 - 20:00" + "\nContacts: phone - +371 26899876; e-mail: onlinelibraryteam@gmail.com" + "\n\n\n\n\nBest regards," + "\nOnlineLibrary administration.");
                 return true;
             }
         }
