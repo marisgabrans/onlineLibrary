@@ -11,16 +11,20 @@ hr.style-one {
 .book-pg-info{
     height: 20%;
     padding-left: 0;
+    padding-right: 0;
 }
 .book-pg-label{
     float: left;
-    font-weight: bold;
+    font-family: American Typewriter, serif;
+    font-weight: 600;
     font-size: large;
     padding-left: 0;
     padding-right: 0;
 }
 .book-pg-prop{
     float: left;
-    padding-left: 2rem;
+    padding-left: 0;
     padding-right: 0;
+    font-family: American Typewriter, serif;
+    font-size: large;
 }
