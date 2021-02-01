@@ -18,6 +18,9 @@
             <a class="nav-link" th:href="@{/authors}" sec:authorize="hasAuthority('ROLE_ADMIN')">Authors</a>
         </li>
         <li class="nav-item">
+            <a class="nav-link" th:href="@{/genres}" sec:authorize="hasAuthority('ROLE_ADMIN')">Genres</a>
+        </li>
+        <li class="nav-item">
             <a class="nav-link" th:href="@{/logout}">Logout</a>
         </li>
     </ul>
