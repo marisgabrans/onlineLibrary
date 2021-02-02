@@ -28,19 +28,19 @@ public class AuthorController {
         List<Author> authors = authorService.search(keyword);
         model.addAttribute("authors", authors);
         model.addAttribute("keyword", keyword);
-        return "/authors/authors-list";
+        return "authors/authors-list";
     }
 
     @GetMapping("/author-create")
     public String createAuthorForm(Model model) {
         model.addAttribute("author", new Author());
-        return "/authors/author-create";
+        return "authors/author-create";
     }
 
     @PostMapping("/author-create")
     public String createAuthor(@ModelAttribute @Valid Author author, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
-            return "/authors/author-create";
+            return "authors/author-create";
         }
         authorService.saveAuthor(author);
         model.addAttribute("author", author);
@@ -53,14 +53,14 @@ public class AuthorController {
 
         List<Author> authors = authorService.findAll();
         model.addAttribute("author", author);
-        return "/authors/author-page";
+        return "authors/author-page";
     }
 
     @GetMapping("/author-update")
     public String showUpdateForm(@RequestParam(name = "author_id", required = true) long id, Model model) {
         Author author = authorService.findById(id);
         model.addAttribute("author", author);
-        return "/authors/author-update";
+        return "authors/author-update";
     }
 
     @PostMapping("/author-update")

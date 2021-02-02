@@ -37,7 +37,7 @@ public class BookController {
         model.addAttribute("genres", genres);
         model.addAttribute("authors", authors);
         model.addAttribute("keyword", keyword);
-        return "/books-list";
+        return "books-list";
     }
 
     @GetMapping("/book-create")
@@ -47,7 +47,7 @@ public class BookController {
         model.addAttribute("genres", genres);
         model.addAttribute("authors", authors);
         model.addAttribute("book", new Book());
-        return "/book-create";
+        return "book-create";
     }
 
     @PostMapping("/book-create")
@@ -57,7 +57,7 @@ public class BookController {
             List<Author> authors = authorService.findAll();
             model.addAttribute("genres", genres);
             model.addAttribute("authors", authors);
-            return "/book-create";
+            return "book-create";
         }
 
         bookService.saveBook(book);
@@ -71,11 +71,11 @@ public class BookController {
         try {
             book = bookService.findById(book_id);
         } catch (Exception e) {
-            return "/books-list";
+            return "books-list";
         }
         List<Book> books = bookService.findAll();
         model.addAttribute("book", book);
-        return "/book-page";
+        return "book-page";
     }
 
     @GetMapping("/book-update")
@@ -86,7 +86,7 @@ public class BookController {
         model.addAttribute("book", book);
         model.addAttribute("genres", genres);
         model.addAttribute("authors", authors);
-        return "/book-update";
+        return "book-update";
     }
 
     @PostMapping("/book-update")
@@ -97,9 +97,10 @@ public class BookController {
             List<Author> authors = authorService.findAll();
             model.addAttribute("genres", genres);
             model.addAttribute("authors", authors);
-            return "/book-update";
+            return "book-update";
         }
 
+        book.setCover(bookService.findById(id).getCover());
         bookService.updateBook(book, id);
         model.addAttribute("books", bookService.findAll());
         return "redirect:/book-page?book_id=" + id;
@@ -123,16 +124,15 @@ public class BookController {
         Book book = bookService.findById(book_id);
         boolean check = bookService.reservation(book);
         if (check) {
-            return "/success-reservation";
+            return "success-reservation";
         } else {
-            return "/error-reservation";
+            return "error-reservation";
         }
     }
 
     @RequestMapping(value = "/imageDisplay", method = RequestMethod.GET)
     public void showImage(@RequestParam("id") Long id, HttpServletResponse response, HttpServletRequest request)
             throws ServletException, IOException {
-        List<Book> books = bookService.findAll();
         Book book = bookService.findById(id);
         response.setContentType("image/jpeg, image/jpg, image/png, image/gif");
         response.getOutputStream().write(book.getCover());

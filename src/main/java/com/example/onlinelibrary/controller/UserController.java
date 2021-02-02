@@ -22,7 +22,7 @@ public class UserController {
         List<User> users = userService.search(keyword);
         model.addAttribute("users", users);
         model.addAttribute("keyword", keyword);
-        return "/users-list";
+        return "users-list";
     }
 
 
@@ -30,7 +30,7 @@ public class UserController {
     public String findUserById(@PathVariable("id") Long id, Model model) {
         User user = userService.findUserById(id); //mock calling service
         model.addAttribute("users", user); // check
-        return "/users-list";  //check
+        return "users-list";  //check
     }
 
     @GetMapping("/user-create")
@@ -41,10 +41,10 @@ public class UserController {
     @PostMapping("/user-create")
     public String createUser(@ModelAttribute @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()){
-            return "/user-create";
+            return "user-create";
         } else if(userService.findEmail(user.getEmail()) != null) {
             model.addAttribute("errMsg", " This email address is already taken!");
-            return "/user-update";
+            return "user-update";
         }
         userService.saveUser(user);
         model.addAttribute("user", user);
@@ -55,28 +55,28 @@ public class UserController {
     public String showUpdateForm(@RequestParam(name = "user_id", required = true) Long user_id, Model model) {
         User user = userService.findUserById(user_id);
         model.addAttribute("user", user);
-        return "/user-update";
+        return "user-update";
     }
 
     @PostMapping("/user-update")
     public String updateUser(@RequestParam (name = "user_id", required = true) Long user_id,
                              @ModelAttribute @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()) {
-            return "/user-update";
+            return "user-update";
         } else if(userService.findEmail(user.getEmail()) != null) {
         model.addAttribute("errMsg", " This email address is already taken!");
-        return "/user-update";
+        return "user-update";
     }
         userService.updateUser(user, user_id);
         model.addAttribute("users", userService.findAll());
-        return "/users-list";
+        return "users-list";
     }
 
     @GetMapping("/user-delete")
     public String deleteUser(@RequestParam(name = "user_id", required = true) Long id, Model model) {
         userService.deleteById(id);
         model.addAttribute("users", userService.findAll());
-        return "/users-list";
+        return "users-list";
     }
 
 }

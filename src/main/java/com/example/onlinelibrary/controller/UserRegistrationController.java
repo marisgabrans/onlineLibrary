@@ -36,10 +36,10 @@ public class UserRegistrationController {
     @PostMapping
     public String registerUserAccount(@ModelAttribute("user") @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()){
-            return "/registration";
+            return "registration";
         } else if(userService.findEmail(user.getEmail()) != null) {
             model.addAttribute("errMsg", " This email address is already taken!");
-            return "/registration";
+            return "registration";
         }
         userService.saveUser(user);
         return "redirect:/registration?success";

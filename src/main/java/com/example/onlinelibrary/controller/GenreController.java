@@ -28,19 +28,19 @@ public class GenreController {
         List<Genre> genres = genreService.search(keyword);
         model.addAttribute("genres", genres);
         model.addAttribute("keyword", keyword);
-        return "/genres/genres-list";
+        return "genres/genres-list";
     }
 
     @GetMapping("/genre-create")
     public String createGenreForm(Model model) {
         model.addAttribute("genre", new Genre());
-        return "/genres/genre-create";
+        return "genres/genre-create";
     }
 
     @PostMapping("/genre-create")
     public String createGenre(@ModelAttribute @Valid Genre genre, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "/genres/genre-create";
+            return "genres/genre-create";
         }
         genreService.saveGenre(genre);
         model.addAttribute("genre", genre);
@@ -52,21 +52,21 @@ public class GenreController {
         Genre genre = genreService.findById(genre_id);
         List<Genre> genres = genreService.findAll();
         model.addAttribute("genre", genre);
-        return "/genres/genre-page";
+        return "genres/genre-page";
     }
 
     @GetMapping("/genre-update")
     public String showUpdateForm(@RequestParam(name = "genre_id", required = true) long id, Model model) {
         Genre genre = genreService.findById(id);
         model.addAttribute("genre", genre);
-        return "/genres/genre-update";
+        return "genres/genre-update";
     }
 
     @PostMapping("/genre-update")
     public String updateGenre(@RequestParam(name = "genre_id", required = true) Long id,
                               @ModelAttribute @Valid Genre genre, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "/genres/genre-update";
+            return "genres/genre-update";
         }
         genreService.updateGenre(genre, id);
         model.addAttribute("genres", genreService.findAll());
