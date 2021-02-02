@@ -20,13 +20,13 @@
             integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
             crossorigin="anonymous"></script>
     <style>
-        body{
+        body {
             background-image: url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=841&q=80");
-            background-size: cover;
         }
     </style>
 </head>
 
+<body class="bg-img-prop">
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container-fluid pt-3 pb-1 text-center container-bg">
@@ -39,23 +39,24 @@
         <div class="col-lg-12">
             <form class="d-flex flex-row" th:action="@{/books}">
                 <div class="w-15 justify-content-center align-self-center"> Filter:</div>
-                <input type="text" class="form-control search-slt" name="keyword" id="keyword" size="50" th:value="${keyword}" required />
+                <input type="text" class="form-control search-slt" name="keyword" id="keyword" size="50"
+                       th:value="${keyword}" required/>
                 &nbsp;
-                <input type="submit" class="w-15 btn btn-info" value="Search" />
+                <input type="submit" class="w-15 btn btn-info" value="Search"/>
                 &nbsp;
-                <input type="button" class="w-15 btn btn-secondary" value="Clear" id="btnClear" onclick="clearSearch()" />
+                <input type="button" class="w-15 btn btn-secondary" value="Clear" id="btnClear"
+                       onclick="clearSearch()"/>
             </form>
         </div>
-
     </div>
 </section>
 </br>
 <div class="container-xl p-0 container-bg rounded" th:switch="${books}">
     </br>
     <div class="container-xl pl-3">
-        <p><a href="/book-create" class="btn btn-outline-info" sec:authorize="hasAuthority('ROLE_ADMIN')">Create book</a></p>
+        <p><a href="/book-create" class="btn btn-outline-info" sec:authorize="hasAuthority('ROLE_ADMIN')">Create
+            book</a></p>
     </div>
-
     <h2 class="alert alert-warning text-center" th:case="null">No books found!</h2>
     <div th:case="*">
         <div class="container-xl p-3">

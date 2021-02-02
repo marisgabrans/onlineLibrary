@@ -12,39 +12,33 @@
     <style>
         /*body{*/
         /*    background-image: url("https://images.unsplash.com/photo-1485322551133-3a4c27a9d925?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80");*/
-        /*    background-size: cover;*/
         /*}*/
-        .jumbotron{
+        .jumbotron {
             background: rgba(233, 236, 239, 0.9);
         }
     </style>
 </head>
 
 <body th:style="'background: url(/images/books-shelf.jpg) no-repeat center center fixed; background-size: cover;'">
-
 <div th:replace="fragments/navbar :: navbar"></div>
-
 
 <br>
 <br>
 <div class="jumbotron row justify-content-center">
     <div class="col-md-6 col-md-offset-3">
         <h1 class="display-4">Welcome!</h1>
-
         <div sec:authorize="hasAuthority('ROLE_USER')">
             <p class="lead">This is online library.</p>
             <hr class="my-4">
             <p>Explore our book collection by clicking the button below!</p>
             <a class="w-25 btn btn-outline-info btn-lg index-btn-min-width" href="/books" role="button">View books</a>
         </div>
-
         <div sec:authorize="hasAuthority('ROLE_ADMIN')">
             <p>Choose one of administration pages:</p>
             <a class="w-auto btn btn-outline-info btn-lg mt-1" href="/users" role="button">Users</a>
             <a class="w-auto btn btn-outline-info btn-lg mt-1" href="/books" role="button">Books</a>
             <a class="w-auto btn btn-outline-info btn-lg mt-1" href="/authors" role="button">Authors</a>
         </div>
-
     </div>
 </div>
 </body>

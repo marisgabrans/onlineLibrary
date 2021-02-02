@@ -12,13 +12,11 @@
     <style>
         body {
             background-image: url("https://images.unsplash.com/photo-1517244649640-fcacab5ce213?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=658&q=80");
-            background-size: cover;
         }
     </style>
 </head>
 
-<body>
-
+<body class="bg-img-prop">
 <div th:replace="fragments/navbar :: navbar"></div>
 
 <div class="container-fluid pt-3 pb-1 text-center container-bg">
@@ -29,7 +27,6 @@
 <div class="container-md pt-3">
     <div class="form-group">
         <form action="#" th:action="@{/book-update?book_id={id}(id=${book.id})}" th:object="${book}" method="post">
-
             <label for="id">Id</label>
             <input readonly class="form-control" type="number" th:field="*{id}" id="id" placeholder="ID">
             <br/>
@@ -38,14 +35,12 @@
             <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
             <br/>
             <label for="author">Author</label>
-            <!--            <input type="text" th:field="*{author}" id="author" placeholder="Author">-->
             <select class="form-control" th:field="*{author}" id="author">
                 <option th:each="author : ${authors}" th:value="${author.id}"
                         th:text="${author.firstName + ' ' + author.lastName}"></option>
             </select>
             <br/>
             <label for="genre">Genre</label>
-            <!--            <input type="text" th:field="*{genre}" id="genre" placeholder="Genre">-->
             <select class="form-control" th:field="*{genre}" id="genre">
                 <option th:each="genre : ${genres}" th:value="${genre.id}" th:text="${genre.genre_name}"></option>
             </select>

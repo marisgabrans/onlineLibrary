@@ -34,3 +34,9 @@ hr.style-one {
 .jumbotron {
     background: rgba(233, 236, 239, 0.9);
 }
+.bg-img-prop{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-attachment: fixed;
+}
