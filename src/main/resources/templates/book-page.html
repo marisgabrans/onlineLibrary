@@ -74,8 +74,10 @@
                         <p th:text="${book.quantity}"></p>
                     </div>
                 </div>
-                <div class="col-12 book-pg-info">
-                    <p><a class="btn btn-outline-info" style="width: 100%"
+                <div class="col-12 book-pg-info" th:switch="${book.quantity}">
+                    <p th:case="0"><a class="btn btn-secondary disabled" style="width: 100%"
+                                      th:href="@{/book-reservation?book_id={id}(id=${book.id})}">Not available</a></p>
+                    <p th:case="*"><a class="btn btn-outline-info" style="width: 100%"
                           th:href="@{/book-reservation?book_id={id}(id=${book.id})}">Make
                         reservation</a></p>
                 </div>
