@@ -1,7 +1,12 @@
 body {
     background-color: #f5f5f5 !important;
+    background-image: url("https://cdn.pixabay.com/photo/2019/02/04/08/38/pixel-cells-3974187_960_720.png");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center center;
+    background-attachment: fixed;
 }
 
 .error-code {
-    font-size: 50vh;
+    font-size: 25vh;
 }

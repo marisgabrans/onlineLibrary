@@ -31,3 +31,6 @@ hr.style-one {
 .index-btn-min-width{
     min-width: 70px;
 }
+.jumbotron {
+    background: rgba(233, 236, 239, 0.9);
+}
