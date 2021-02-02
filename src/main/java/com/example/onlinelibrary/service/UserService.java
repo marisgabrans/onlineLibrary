@@ -20,15 +20,10 @@ import java.util.stream.Collectors;
 @Service
 public class UserService implements UserDetailsService {
 
-    private UserRepository userRepository;
+    @Autowired UserRepository userRepository;
 
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
-
-    public UserService(UserRepository userRepository) {
-        super();
-        this.userRepository = userRepository;
-    }
 
     public User findEmail(String email) {
         return  userRepository.findByEmail(email);
