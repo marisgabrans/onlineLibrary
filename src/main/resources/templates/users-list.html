@@ -67,8 +67,8 @@
                     <td th:text="${user.firstName}"></td>
                     <td th:text="${user.lastName}"></td>
                     <td th:text="${user.email}"></td>
-                    <td><a th:href="@{/user-update?user_id={id}(id=${user.id})}">Edit</a></td>
-                    <td><a th:href="@{/user-delete?user_id={id}(id=${user.id})}">Delete</a></td>
+                    <td><a class="btn btn-outline-info" th:href="@{/user-update?user_id={id}(id=${user.id})}">Edit</a></td>
+                    <td><a class="btn btn-danger" th:href="@{/user-delete?user_id={id}(id=${user.id})}">Delete</a></td>
                 </tr>
                 </tbody>
             </table>
