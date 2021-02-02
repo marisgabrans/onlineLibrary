@@ -28,9 +28,9 @@ public class UserController {
 
     @GetMapping("/users/{id}")
     public String findUserById(@PathVariable("id") Long id, Model model) {
-        User user = userService.findUserById(id);
-        model.addAttribute("users", user);
-        return "/users-list";
+        User user = userService.findUserById(id); //mock calling service
+        model.addAttribute("users", user); // check
+        return "/users-list";  //check
     }
 
     @GetMapping("/user-create")

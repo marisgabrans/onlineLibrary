@@ -22,16 +22,11 @@ import java.util.List;
 
 @Controller
 public class BookController {
-    private final BookService bookService;
-    private final GenreService genreService;
-    private final AuthorService authorService;
+    @Autowired BookService bookService;
+    @Autowired GenreService genreService;
+    @Autowired AuthorService authorService;
 
-    @Autowired
-    public BookController(BookService bookService, GenreService genreService, AuthorService authorService) {
-        this.bookService = bookService;
-        this.genreService = genreService;
-        this.authorService = authorService;
-    }
+
 
     @GetMapping("/books")
     public String findAll(Model model, @Param("keyword") String keyword) {

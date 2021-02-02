@@ -22,15 +22,12 @@ import java.util.Random;
 
 @Service
 public class BookService {
-    private final BookRepository bookRepository;
+    @Autowired
+    BookRepository bookRepository;
 
     @Autowired
     private JavaMailSender emailSender;
 
-    @Autowired
-    public BookService(BookRepository bookRepository) {
-        this.bookRepository = bookRepository;
-    }
 
     public Book findById(Long id) {
         return bookRepository.getOne(id);
