@@ -35,7 +35,7 @@ public class UserController {
 
     @GetMapping("/user-create")
     public String createUserForm(User user) {
-        return "/user-create";
+        return "user-create";
     }
 
     @PostMapping("/user-create")
