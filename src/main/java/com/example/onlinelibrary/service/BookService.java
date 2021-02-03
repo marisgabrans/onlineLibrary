@@ -100,7 +100,7 @@ public class BookService {
 
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("onlinelibraryteam@gmail.com");
+        message.setFrom("worms.boook@gmail.com");
         message.setTo(to);
         message.setSubject(subject);
         message.setText(text);
