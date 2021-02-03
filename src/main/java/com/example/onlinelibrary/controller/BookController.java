@@ -105,7 +105,7 @@ public class BookController {
         model.addAttribute("books", bookService.findAll());
         return "redirect:/book-page?book_id=" + id;
     }
-    // in progress...
+    // test done
     @GetMapping("/book-delete")
     public String deleteBook(@RequestParam(name = "book_id", required = true) long id, Model model) {
         try {

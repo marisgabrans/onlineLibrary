@@ -2,6 +2,7 @@ package com.example.onlinelibrary.controller;
 
 import com.example.onlinelibrary.model.User;
 import com.example.onlinelibrary.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -16,13 +17,9 @@ import javax.validation.Valid;
 @RequestMapping("/registration")
 public class UserRegistrationController {
 
-    private UserService userService;
-
-    public UserRegistrationController(UserService userService) {
-        super();
-        this.userService = userService;
-    }
-
+    @Autowired
+    UserService userService;
+    // in progress...
     @ModelAttribute("user")
     public User userRegistration() {
         return new User();

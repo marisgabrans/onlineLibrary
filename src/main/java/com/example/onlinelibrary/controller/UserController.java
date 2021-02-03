@@ -16,6 +16,8 @@ import java.util.List;
 public class UserController {
 
     @Autowired UserService userService;
+
+
     // test created
     @GetMapping("/users")
     public String users(Model model, @Param("keyword") String keyword) {
@@ -46,8 +48,7 @@ public class UserController {
             model.addAttribute("errMsg", " This email address is already taken!");
             return "user-update";
         }
-        userService.saveUser(user);
-        model.addAttribute("user", user);
+        model.addAttribute("user", userService.saveUser(user));
         return "redirect:/users";
     }
     // test created
@@ -71,7 +72,7 @@ public class UserController {
         model.addAttribute("users", userService.findAll());
         return "users-list";
     }
-
+    // test done
     @GetMapping("/user-delete")
     public String deleteUser(@RequestParam(name = "user_id", required = true) Long id, Model model) {
         userService.deleteById(id);

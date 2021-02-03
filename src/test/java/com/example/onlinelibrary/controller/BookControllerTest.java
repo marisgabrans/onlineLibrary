@@ -24,7 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -97,18 +97,19 @@ public class BookControllerTest {
                 .andExpect(model().attributeExists("authors"))
                 .andExpect(view().name("book-update"));
     }
-/*
+
     @Test
     public void testDeleteBook() throws Exception {
         String book_id = "1";
         when(bookService.findById(anyLong())).thenReturn(getBook(1L));
-        when(bookService.deleteBook(any())).thenReturn(nullable());
+        bookService.deleteBook(getBook(1L));
+        verify(bookService).deleteBook(any());
         ResultActions resultActions = this.mvc.perform(get(URLDeleteBook).param("book_id", book_id));
-        resultActions.andExpect(status().isOk())
+        resultActions.andExpect(status().isFound())
                 .andExpect(model().attributeExists("books"))
                 .andExpect(view().name("redirect:/books"));
     }
-*/
+
 
     @Test
     public void testSuccessBookReservation() throws Exception {
