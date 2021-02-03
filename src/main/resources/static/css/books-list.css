@@ -3,7 +3,7 @@
 }
 .search-slt{
     display: block;
-    width: 100%;
+    /*width: 100%;*/
     font-size: 0.875rem;
     line-height: 1.5;
     color: #55595c;
