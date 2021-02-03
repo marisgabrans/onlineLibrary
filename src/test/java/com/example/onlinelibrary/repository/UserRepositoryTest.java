@@ -21,7 +21,7 @@ public class UserRepositoryTest {
     private Collection<Role> roles;
 
     @Test
-    public void test01() {
+    public void test01SaveNewUser() {
 
         User testUser = new User("testFirst", "testSecond", "test@test.com", "testtest", roles);
         User savedUser = userRepository.save(testUser);
