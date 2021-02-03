@@ -16,7 +16,7 @@ import java.util.List;
 public class UserController {
 
     @Autowired UserService userService;
-
+    // test created
     @GetMapping("/users")
     public String users(Model model, @Param("keyword") String keyword) {
         List<User> users = userService.search(keyword);
@@ -25,14 +25,14 @@ public class UserController {
         return "users-list";
     }
 
-
+    // test created
     @GetMapping("/users/{id}")
     public String findUserById(@PathVariable("id") Long id, Model model) {
         User user = userService.findUserById(id); //mock calling service
         model.addAttribute("users", user); // check
         return "users-list";  //check
     }
-
+    // test created
     @GetMapping("/user-create")
     public String createUserForm(User user) {
         return "user-create";
@@ -50,7 +50,7 @@ public class UserController {
         model.addAttribute("user", user);
         return "redirect:/users";
     }
-
+    // test created
     @GetMapping("/user-update")
     public String showUpdateForm(@RequestParam(name = "user_id", required = true) Long user_id, Model model) {
         User user = userService.findUserById(user_id);

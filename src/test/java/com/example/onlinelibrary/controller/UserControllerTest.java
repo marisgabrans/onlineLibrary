@@ -1,5 +1,6 @@
 package com.example.onlinelibrary.controller;
 
+import com.example.onlinelibrary.model.Book;
 import com.example.onlinelibrary.model.User;
 import com.example.onlinelibrary.service.UserService;
 import mockit.Expectations;
@@ -18,6 +19,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -26,7 +30,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(MockitoJUnitRunner.class)
 public class UserControllerTest {
 
+    public static final String URLUsers = "/users";
     public static final String URLGetById = "/users/1";
+    public static final String URLCreateUserForm = "/user-create";
     public static final String URLShowUpdateForm = "/user-update";
 
     @InjectMocks
@@ -46,14 +52,31 @@ public class UserControllerTest {
     }
 
     @Test
+    public void testFindAll() throws Exception {
+        String keyword = "Data";
+        when(userService.search(keyword)).thenReturn(getUsers());
+        ResultActions resultActions = this.mvc.perform(get(URLUsers).param("keyword", keyword));
+        resultActions.andExpect(status().isOk())
+                .andExpect(model().attributeExists("users"))
+                .andExpect(model().attributeExists("keyword"))
+                .andExpect(view().name("users-list"));
+    }
+
+    @Test
     public void findUserById_Success() throws Exception {
         when(userService.findUserById(anyLong())).thenReturn(getUser(1L));
-
         ResultActions resultActions = this.mvc.perform(get(URLGetById));
         resultActions.andExpect(status().isOk())
                 .andExpect(model().attributeExists("users"))
                 .andExpect(view().name("users-list"));
 
+    }
+
+    @Test
+    public void testCreateUserForm() throws Exception {
+        ResultActions resultActions = this.mvc.perform(get(URLCreateUserForm));
+        resultActions.andExpect(status().isOk())
+                .andExpect(view().name("user-create"));
     }
 
     @Test
@@ -70,6 +93,17 @@ public class UserControllerTest {
         User user = new User();
         user.setId(id);
         return user;
+    }
+
+    private List<User> getUsers() {
+        List<User> users = new ArrayList<User>();
+        User user = new User();
+        user.setId(1L);
+        User user1 = new User();
+        user1.setId(2L);
+        users.add(user);
+        users.add(user1);
+        return users;
     }
 
     private ViewResolver viewResolver()

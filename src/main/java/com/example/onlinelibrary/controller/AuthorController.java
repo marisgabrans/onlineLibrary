@@ -2,6 +2,7 @@ package com.example.onlinelibrary.controller;
 
 import com.example.onlinelibrary.model.Author;
 import com.example.onlinelibrary.service.AuthorService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +18,10 @@ import java.util.List;
 
 @Controller
 public class AuthorController {
-    private final AuthorService authorService;
+    @Autowired
+    AuthorService authorService;
 
-    public AuthorController(AuthorService authorService) {
-        this.authorService = authorService;
-    }
-
+    // test created
     @GetMapping("/authors")
     public String findAll(Model model, @Param("keyword") String keyword) {
         List<Author> authors = authorService.search(keyword);
@@ -30,7 +29,7 @@ public class AuthorController {
         model.addAttribute("keyword", keyword);
         return "authors/authors-list";
     }
-
+    // test created
     @GetMapping("/author-create")
     public String createAuthorForm(Model model) {
         model.addAttribute("author", new Author());
@@ -46,16 +45,15 @@ public class AuthorController {
         model.addAttribute("author", author);
         return "redirect:/authors";
     }
-
+    // test created
     @GetMapping("/author-page")
     public String authorPage(Model model, @RequestParam(name = "author_id", required = false) Long author_id) {
         Author author =  authorService.findById(author_id);
-
         List<Author> authors = authorService.findAll();
         model.addAttribute("author", author);
         return "authors/author-page";
     }
-
+    // test created
     @GetMapping("/author-update")
     public String showUpdateForm(@RequestParam(name = "author_id", required = true) long id, Model model) {
         Author author = authorService.findById(id);

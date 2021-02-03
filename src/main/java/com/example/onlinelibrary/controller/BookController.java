@@ -27,7 +27,7 @@ public class BookController {
     @Autowired AuthorService authorService;
 
 
-
+    // test created
     @GetMapping("/books")
     public String findAll(Model model, @Param("keyword") String keyword) {
         List<Genre> genres = genreService.findAll();
@@ -39,7 +39,7 @@ public class BookController {
         model.addAttribute("keyword", keyword);
         return "books-list";
     }
-
+    // test created
     @GetMapping("/book-create")
     public String createBookForm(Model model) {
         List<Genre> genres = genreService.findAll();
@@ -77,7 +77,7 @@ public class BookController {
         model.addAttribute("book", book);
         return "book-page";
     }
-
+    // test created
     @GetMapping("/book-update")
     public String showUpdateForm(@RequestParam(name = "book_id", required = true) long id, Model model) {
         List<Genre> genres = genreService.findAll();
@@ -105,7 +105,7 @@ public class BookController {
         model.addAttribute("books", bookService.findAll());
         return "redirect:/book-page?book_id=" + id;
     }
-
+    // in progress...
     @GetMapping("/book-delete")
     public String deleteBook(@RequestParam(name = "book_id", required = true) long id, Model model) {
         try {
@@ -117,7 +117,7 @@ public class BookController {
         model.addAttribute("books", bookService.findAll());
         return "redirect:/books";
     }
-
+    // test created
     @GetMapping("/book-reservation")
     public String bookReservation(Model model, @RequestParam(name = "book_id", required = true) Long book_id) {
         List<Book> books = bookService.findAll();
