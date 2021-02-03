@@ -52,7 +52,7 @@ public class UserControllerTest {
         ResultActions resultActions = this.mvc.perform(get(URLGetById));
         resultActions.andExpect(status().isOk())
                 .andExpect(model().attributeExists("users"))
-                .andExpect(view().name("/users-list"));
+                .andExpect(view().name("users-list"));
 
     }
 
@@ -63,7 +63,7 @@ public class UserControllerTest {
         ResultActions resultActions = this.mvc.perform(get(URLShowUpdateForm).param("user_id", user_id));
         resultActions.andExpect(status().isOk())
                 .andExpect(model().attributeExists("user"))
-                .andExpect(view().name("/user-update"));
+                .andExpect(view().name("user-update"));
     }
 
     private User getUser(Long id) {
