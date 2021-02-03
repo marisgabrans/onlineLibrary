@@ -41,7 +41,7 @@ public class BookControllerTest {
     }
 
     @Test
-    public void testFindAll(){
+    public void testFindAll() throws Exception {
 
     }
 
