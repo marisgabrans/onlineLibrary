@@ -40,6 +40,7 @@ public class UserControllerTest {
     public static final String URLGetById = "/users/1";
     public static final String URLCreateUserForm = "/user-create";
     public static final String URLShowUpdateForm = "/user-update";
+    public static final String URLUpdateUser = "/user-update";
     public static final String URLDeleteUser = "/user-delete";
 
     @InjectMocks
@@ -123,6 +124,37 @@ public class UserControllerTest {
         resultActions.andExpect(status().isOk())
                 .andExpect(model().attributeExists("user"))
                 .andExpect(view().name("user-update"));
+    }
+
+    @Test
+    public void testUpdateUser_hasError() throws Exception {
+        String user_id = "1";
+        ResultActions resultActions = this.mvc.perform(post(URLUpdateUser).param("user_id", user_id).flashAttr("user",getUser(1L)));
+        resultActions.andExpect(status().isOk())
+                .andExpect(view().name("user-update"));
+    }
+
+    @Test
+    public void testUpdateUser_hasNoError() throws Exception {
+        String user_id = "1";
+        when(userService.findEmail(anyString())).thenReturn(getUser(1L));
+        ResultActions resultActions = this.mvc.perform(post(URLUpdateUser).param("user_id", user_id).flashAttr("user",getUserForValidation(1L)));
+        resultActions.andExpect(status().isOk())
+                .andExpect(model().attributeExists("errMsg"))
+                .andExpect(view().name("user-update"));
+    }
+
+    @Test
+    public void testUpdateUser_findUser() throws Exception {
+        String user_id = "1";
+        when(userService.findEmail(anyString())).thenReturn(null);
+        when(userService.findAll()).thenReturn(getUsers());
+        userService.updateUser(getUser(1L), 1L);
+        verify(userService).updateUser(any(), anyLong());
+        ResultActions resultActions = this.mvc.perform(post(URLUpdateUser).param("user_id", user_id).flashAttr("user",getUserForValidation(1L)));
+        resultActions.andExpect(status().isOk())
+                .andExpect(model().attributeExists("users"))
+                .andExpect(view().name("users-list"));
     }
 
     @Test

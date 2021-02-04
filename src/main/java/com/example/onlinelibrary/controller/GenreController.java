@@ -3,6 +3,7 @@ package com.example.onlinelibrary.controller;
 import com.example.onlinelibrary.model.Author;
 import com.example.onlinelibrary.model.Genre;
 import com.example.onlinelibrary.service.GenreService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,12 +18,10 @@ import java.util.List;
 
 @Controller
 public class GenreController {
-    private final GenreService genreService;
+    @Autowired
+    GenreService genreService;
 
-    public GenreController(GenreService genreService) {
-        this.genreService = genreService;
-    }
-
+    // test done
     @GetMapping("/genres")
     public String findAll(Model model, @Param("keyword") String keyword) {
         List<Genre> genres = genreService.search(keyword);
@@ -30,13 +29,13 @@ public class GenreController {
         model.addAttribute("keyword", keyword);
         return "genres/genres-list";
     }
-
+    // test done
     @GetMapping("/genre-create")
     public String createGenreForm(Model model) {
         model.addAttribute("genre", new Genre());
         return "genres/genre-create";
     }
-
+    // test done
     @PostMapping("/genre-create")
     public String createGenre(@ModelAttribute @Valid Genre genre, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -46,7 +45,7 @@ public class GenreController {
         model.addAttribute("genre", genre);
         return "redirect:/genres";
     }
-
+    // test done
     @GetMapping("/genre-page")
     public String genrePage(Model model, @RequestParam(name = "genre_id", required = false) Long genre_id) {
         Genre genre = genreService.findById(genre_id);
@@ -54,14 +53,14 @@ public class GenreController {
         model.addAttribute("genre", genre);
         return "genres/genre-page";
     }
-
+    // test done
     @GetMapping("/genre-update")
     public String showUpdateForm(@RequestParam(name = "genre_id", required = true) long id, Model model) {
         Genre genre = genreService.findById(id);
         model.addAttribute("genre", genre);
         return "genres/genre-update";
     }
-
+    // test done
     @PostMapping("/genre-update")
     public String updateGenre(@RequestParam(name = "genre_id", required = true) Long id,
                               @ModelAttribute @Valid Genre genre, BindingResult bindingResult, Model model) {
@@ -72,7 +71,7 @@ public class GenreController {
         model.addAttribute("genres", genreService.findAll());
         return "redirect:/genre-page?genre_id=" + id;
     }
-
+    // test done
     @GetMapping("/genre-delete")
     public String deleteGenre(@RequestParam(name = "genre_id", required = true) long id, Model model) {
         try {
@@ -84,5 +83,4 @@ public class GenreController {
         model.addAttribute("genre", genreService.findAll());
         return "redirect:/genres";
     }
-
 }

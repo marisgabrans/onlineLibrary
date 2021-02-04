@@ -27,7 +27,7 @@ public class BookController {
     @Autowired AuthorService authorService;
 
 
-    // test created
+    // test done
     @GetMapping("/books")
     public String findAll(Model model, @Param("keyword") String keyword) {
         List<Genre> genres = genreService.findAll();
@@ -39,7 +39,7 @@ public class BookController {
         model.addAttribute("keyword", keyword);
         return "books-list";
     }
-    // test created
+    // test done
     @GetMapping("/book-create")
     public String createBookForm(Model model) {
         List<Genre> genres = genreService.findAll();
@@ -49,7 +49,7 @@ public class BookController {
         model.addAttribute("book", new Book());
         return "book-create";
     }
-
+    // test done
     @PostMapping("/book-create")
     public String createBook(@ModelAttribute @Valid Book book, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -59,12 +59,11 @@ public class BookController {
             model.addAttribute("authors", authors);
             return "book-create";
         }
-
         bookService.saveBook(book);
         model.addAttribute("book", book);
         return "redirect:/books";
     }
-
+    // test done
     @GetMapping("/book-page")
     public String bookPage(Model model, @RequestParam(name = "book_id", required = false) Long book_id) {
         Book book = null;
@@ -77,7 +76,7 @@ public class BookController {
         model.addAttribute("book", book);
         return "book-page";
     }
-    // test created
+    // test done
     @GetMapping("/book-update")
     public String showUpdateForm(@RequestParam(name = "book_id", required = true) long id, Model model) {
         List<Genre> genres = genreService.findAll();
@@ -88,7 +87,7 @@ public class BookController {
         model.addAttribute("authors", authors);
         return "book-update";
     }
-
+    // test done
     @PostMapping("/book-update")
     public String updateBook(@RequestParam(name = "book_id", required = true) Long id,
                              @ModelAttribute @Valid Book book, BindingResult result, Model model) {
@@ -99,7 +98,6 @@ public class BookController {
             model.addAttribute("authors", authors);
             return "book-update";
         }
-
         book.setCover(bookService.findById(id).getCover());
         bookService.updateBook(book, id);
         model.addAttribute("books", bookService.findAll());
@@ -117,7 +115,7 @@ public class BookController {
         model.addAttribute("books", bookService.findAll());
         return "redirect:/books";
     }
-    // test created
+    // test done
     @GetMapping("/book-reservation")
     public String bookReservation(Model model, @RequestParam(name = "book_id", required = true) Long book_id) {
         List<Book> books = bookService.findAll();

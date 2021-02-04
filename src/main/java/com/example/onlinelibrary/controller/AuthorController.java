@@ -21,7 +21,7 @@ public class AuthorController {
     @Autowired
     AuthorService authorService;
 
-    // test created
+    // test done
     @GetMapping("/authors")
     public String findAll(Model model, @Param("keyword") String keyword) {
         List<Author> authors = authorService.search(keyword);
@@ -29,13 +29,13 @@ public class AuthorController {
         model.addAttribute("keyword", keyword);
         return "authors/authors-list";
     }
-    // test created
+    // test done
     @GetMapping("/author-create")
     public String createAuthorForm(Model model) {
         model.addAttribute("author", new Author());
         return "authors/author-create";
     }
-
+    // test done
     @PostMapping("/author-create")
     public String createAuthor(@ModelAttribute @Valid Author author, BindingResult bindingResult, Model model) {
         if(bindingResult.hasErrors()) {
@@ -45,7 +45,7 @@ public class AuthorController {
         model.addAttribute("author", author);
         return "redirect:/authors";
     }
-    // test created
+    // test done
     @GetMapping("/author-page")
     public String authorPage(Model model, @RequestParam(name = "author_id", required = false) Long author_id) {
         Author author =  authorService.findById(author_id);
@@ -53,14 +53,14 @@ public class AuthorController {
         model.addAttribute("author", author);
         return "authors/author-page";
     }
-    // test created
+    // test done
     @GetMapping("/author-update")
     public String showUpdateForm(@RequestParam(name = "author_id", required = true) long id, Model model) {
         Author author = authorService.findById(id);
         model.addAttribute("author", author);
         return "authors/author-update";
     }
-
+    // test done
     @PostMapping("/author-update")
     public String updateAuthor(@RequestParam(name = "author_id", required = true) Long id,
                                @ModelAttribute @Valid Author author, BindingResult bindingResult, Model model) {
@@ -71,7 +71,7 @@ public class AuthorController {
         model.addAttribute("authors", authorService.findAll());
         return "redirect:/author-page?author_id=" + id;
     }
-
+    // test done
     @GetMapping("/author-delete")
     public String deleteAuthor(@RequestParam(name = "author_id", required = true) long id, Model model) {
         try {
