@@ -1,9 +1,8 @@
 # Online Library - Spring Boot web app
-Online Library team project created during Accenture Java bootcamp.
-
+Online Library is a web app which was created as a team project Accenture Java Bootcamp. \
 
 ## Built With
-Back-end part is developed using Spring Boot. Front-end built with Thymeleaf and Bootstrap.
+App is written in Java and works with MySQL database. Front-end built with Thymeleaf and Bootstrap.
 
 ## Functionality
 Web app is secured and in order to log in users are prompted to create accounts. Currently app supports two roles: `ROLE_USER` and `ROLE_ADMIN`. 
