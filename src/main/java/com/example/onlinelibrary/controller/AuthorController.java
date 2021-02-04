@@ -65,7 +65,7 @@ public class AuthorController {
     public String updateAuthor(@RequestParam(name = "author_id", required = true) Long id,
                                @ModelAttribute @Valid Author author, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
-            return "/authors/author-update";
+            return "authors/author-update";
         }
         authorService.updateAuthor(author, id);
         model.addAttribute("authors", authorService.findAll());
