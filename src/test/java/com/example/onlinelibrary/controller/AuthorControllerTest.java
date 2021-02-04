@@ -117,7 +117,7 @@ public class AuthorControllerTest {
         String author_id = "1";
         ResultActions resultActions = this.mvc.perform(post(URLUpdateAuthor).param("author_id", author_id).flashAttr("author",getAuthor(1L)));
         resultActions.andExpect(status().isOk())
-                .andExpect(view().name("/authors/author-update"));
+                .andExpect(view().name("authors/author-update"));
     }
 
     @Test
