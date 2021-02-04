@@ -19,11 +19,13 @@ To launch the app you will need preinstalled:
 * MySQL Server
 
 ## Installation and usage
-1. Clone the repo: https://github.com/GuntarsK/online-library.git
-2. Build jar with IDE or via commandline: `$ mvn package`
-3. Run the application `$ java -jar target/${project.build.finalName}.jar`
-4. Access application in web browser: http://localhost:8080
-5. Tables in database will be created on the first launch of the application. Create a new account by registering in the web app. All users by default have role `ROLE_USER` and have limited access to web app functionalities. Update user role to `ROLE_USER` in database table `role` to get access to all web app features.
+1. Create a database `library`. Tables will be created automatically on the first launch of the application
+2. Update database connection credentials in `application.properties` file
+3. Clone the repo: https://github.com/GuntarsK/online-library.git
+4. Build jar with IDE or via commandline: `$ mvn package`
+5. Run the application `$ java -jar target/${project.build.finalName}.jar`
+6. Access application in web browser: http://localhost:8080
+7. Create a new account by registering in the web app. All users by default have role `ROLE_USER` and have limited access to web app functionalities. Update user role to `ROLE_USER` in database table `role` to get access to all web app features.
 
 
 ## Licence
