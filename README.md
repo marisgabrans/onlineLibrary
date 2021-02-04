@@ -21,7 +21,7 @@ To launch the app you will need preinstalled:
 ## Installation and usage
 1. Create a database `library`. Tables will be created automatically on the first launch of the application
 2. Clone the repo: https://github.com/GuntarsK/online-library.git
-3. Update database connection credentials in `application.properties` file
+3. Edit `application.properties` file - set your credentials for database connection and email account
 4. Build jar with IDE or via commandline: `$ mvn package`
 5. Run the application `$ java -jar target/${project.build.finalName}.jar`
 6. Access application in web browser: http://localhost:8080
