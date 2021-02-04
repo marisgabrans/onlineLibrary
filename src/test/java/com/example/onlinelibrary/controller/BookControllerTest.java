@@ -16,12 +16,16 @@ import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpHeaders;
+import org.springframework.mock.web.MockHttpServletRequest;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,6 +46,7 @@ public class BookControllerTest {
     public static final String URLUpdateBook = "/book-update";
     public static final String URLDeleteBook = "/book-delete";
     public static final String URLBookReservation = "/book-reservation";
+    public static final String URLImageDisplay = "/imageDisplay";
 
     @InjectMocks
     BookController controller;
@@ -52,6 +57,8 @@ public class BookControllerTest {
     AuthorService authorService;
     @Mock
     BookService bookService;
+    @Autowired
+    HttpServletRequest httpServletRequest;
 
     private MockMvc mvc;
 
@@ -122,6 +129,14 @@ public class BookControllerTest {
                 .andExpect(model().attributeExists("genres"))
                 .andExpect(model().attributeExists("authors"))
                 .andExpect(view().name("book-update"));
+    }
+
+    @Test
+    public void testImageDisplay() throws Exception {
+        String book_id = "1";
+        when(bookService.findById(anyLong())).thenReturn(getBookForImage(1L));
+        ResultActions resultActions = this.mvc.perform(get(URLImageDisplay).param("id", book_id));
+        resultActions.andExpect(status().isOk());
     }
 
     @Test
@@ -207,6 +222,12 @@ public class BookControllerTest {
     private Book getBook(Long id) {
         Book book = new Book();
         book.setId(id);
+        return book;
+    }
+    private Book getBookForImage(Long id) {
+        Book book = new Book();
+        book.setId(id);
+        book.setCover(new byte[]{1,23,4,12,3});
         return book;
     }
 

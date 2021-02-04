@@ -19,7 +19,7 @@ public class UserRegistrationController {
 
     @Autowired
     UserService userService;
-    // in progress...
+
     @ModelAttribute("user")
     public User userRegistration() {
         return new User();

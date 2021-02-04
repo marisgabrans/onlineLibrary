@@ -21,7 +21,6 @@ public class GenreController {
     @Autowired
     GenreService genreService;
 
-    // test done
     @GetMapping("/genres")
     public String findAll(Model model, @Param("keyword") String keyword) {
         List<Genre> genres = genreService.search(keyword);
@@ -29,13 +28,13 @@ public class GenreController {
         model.addAttribute("keyword", keyword);
         return "genres/genres-list";
     }
-    // test done
+
     @GetMapping("/genre-create")
     public String createGenreForm(Model model) {
         model.addAttribute("genre", new Genre());
         return "genres/genre-create";
     }
-    // test done
+
     @PostMapping("/genre-create")
     public String createGenre(@ModelAttribute @Valid Genre genre, BindingResult bindingResult, Model model) {
         if (bindingResult.hasErrors()) {
@@ -45,7 +44,7 @@ public class GenreController {
         model.addAttribute("genre", genre);
         return "redirect:/genres";
     }
-    // test done
+
     @GetMapping("/genre-page")
     public String genrePage(Model model, @RequestParam(name = "genre_id", required = false) Long genre_id) {
         Genre genre = genreService.findById(genre_id);
@@ -53,14 +52,14 @@ public class GenreController {
         model.addAttribute("genre", genre);
         return "genres/genre-page";
     }
-    // test done
+
     @GetMapping("/genre-update")
     public String showUpdateForm(@RequestParam(name = "genre_id", required = true) long id, Model model) {
         Genre genre = genreService.findById(id);
         model.addAttribute("genre", genre);
         return "genres/genre-update";
     }
-    // test done
+
     @PostMapping("/genre-update")
     public String updateGenre(@RequestParam(name = "genre_id", required = true) Long id,
                               @ModelAttribute @Valid Genre genre, BindingResult bindingResult, Model model) {
@@ -71,7 +70,7 @@ public class GenreController {
         model.addAttribute("genres", genreService.findAll());
         return "redirect:/genre-page?genre_id=" + id;
     }
-    // test done
+
     @GetMapping("/genre-delete")
     public String deleteGenre(@RequestParam(name = "genre_id", required = true) long id, Model model) {
         try {

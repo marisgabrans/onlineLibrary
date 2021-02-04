@@ -17,8 +17,6 @@ public class UserController {
 
     @Autowired UserService userService;
 
-
-    // test done
     @GetMapping("/users")
     public String users(Model model, @Param("keyword") String keyword) {
         List<User> users = userService.search(keyword);
@@ -27,19 +25,19 @@ public class UserController {
         return "users-list";
     }
 
-    // test done
+
     @GetMapping("/users/{id}")
     public String findUserById(@PathVariable("id") Long id, Model model) {
         User user = userService.findUserById(id); //mock calling service
         model.addAttribute("users", user); // check
         return "users-list";  //check
     }
-    // test done
+
     @GetMapping("/user-create")
     public String createUserForm(User user) {
         return "user-create";
     }
-    // test done
+
     @PostMapping("/user-create")
     public String createUser(@ModelAttribute @Valid User user, BindingResult result, Model model) {
         if (result.hasErrors()){
@@ -51,14 +49,14 @@ public class UserController {
         model.addAttribute("user", userService.saveUser(user));
         return "redirect:/users";
     }
-    // test done
+
     @GetMapping("/user-update")
     public String showUpdateForm(@RequestParam(name = "user_id", required = true) Long user_id, Model model) {
         User user = userService.findUserById(user_id);
         model.addAttribute("user", user);
         return "user-update";
     }
-    // test done
+
     @PostMapping("/user-update")
     public String updateUser(@RequestParam (name = "user_id", required = true) Long user_id,
                              @ModelAttribute @Valid User user, BindingResult result, Model model) {
@@ -72,7 +70,7 @@ public class UserController {
         model.addAttribute("users", userService.findAll());
         return "users-list";
     }
-    // test done
+
     @GetMapping("/user-delete")
     public String deleteUser(@RequestParam(name = "user_id", required = true) Long id, Model model) {
         userService.deleteById(id);
