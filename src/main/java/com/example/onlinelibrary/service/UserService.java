@@ -44,9 +44,6 @@ public class UserService implements UserDetailsService {
     }
 
     public User updateUser(User userDetails, Long id) {
-        if (userRepository.findByEmail(userDetails.getEmail()) != null) {
-            // verify if
-        }
         User user = userRepository.findUserById(id);
         user.setFirstName(userDetails.getFirstName());
         user.setLastName(userDetails.getLastName());
