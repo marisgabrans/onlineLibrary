@@ -1,8 +1,8 @@
 # Online Library - Spring Boot web app
-Online Library is a web app which was created as a team project Accenture Java Bootcamp.
+Online Library is a web application that servers as a tool for managing data about books within a library. 
 
 ## Built With
-App is written in Java and works with MySQL database. Front-end built with Thymeleaf and Bootstrap.
+App is written in Java using Spring Boot framework and works with MySQL database. Front-end built with Thymeleaf and Bootstrap.
 
 ## Functionality
 Web app is secured and in order to log in users are prompted to create accounts. Currently app supports two roles: `ROLE_USER` and `ROLE_ADMIN`. 
@@ -26,3 +26,12 @@ To launch the app you will need preinstalled:
 6. Access application in web browser: http://localhost:8080
 7. Create a new account by registering in the web app. All users by default have role `ROLE_USER` and have limited access to web app functionalities. Update user role to `ROLE_USER` in database table `role` to get access to all web app features.
 
+
+# Possible improvements for further development
+* Forum/discussion board for book readers
+* Reservation overview page for admin
+* Customer profile page with reservation history
+* Automatic fine calculation for overdue
+* Book rating and review options
+* Messaging between users and admin
+* Email confirmation on registration
