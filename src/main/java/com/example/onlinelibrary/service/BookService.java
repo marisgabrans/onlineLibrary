@@ -1,9 +1,6 @@
 package com.example.onlinelibrary.service;
 
-import com.example.onlinelibrary.model.Author;
 import com.example.onlinelibrary.model.Book;
-import com.example.onlinelibrary.model.Genre;
-import com.example.onlinelibrary.model.User;
 import com.example.onlinelibrary.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
@@ -12,11 +9,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import java.sql.Blob;
 import java.util.List;
 import java.util.Random;
 
